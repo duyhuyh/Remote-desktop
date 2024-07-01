@@ -23,6 +23,7 @@ namespace app
         private TcpListener tcpListener;
         private Thread listenThread;
         private List<TcpClient> clients = new List<TcpClient>();
+        private bool isMaxDisplay = false;
 
         /*--------------------------------------------------------*/
 
@@ -38,6 +39,7 @@ namespace app
         public App()
         {
             InitializeComponent();
+            groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -58,18 +60,26 @@ namespace app
             listenThread = new Thread(new ThreadStart(ListenForClients));
             listenThread.Start();
             listBoxClients.Items.Add("Server started...");
+            btnConnect.Enabled = false;
+            btnListen.Enabled = false;
+            if (!isMaxDisplay)
+            {
+                WindowState = FormWindowState.Maximized;
+                FormBorderStyle = FormBorderStyle.FixedSingle;
+                
+                isMaxDisplay = true;
+            }
         }
-
+        
         private void ListenForClients()
         {
             tcpListener.Start();
-
             while (true)
             {
                 TcpClient client = tcpListener.AcceptTcpClient();
                 clients.Add(client);
                 listBoxClients.Invoke(new Action(() => listBoxClients.Items.Add("Client connected...")));
-
+                
                 Thread clientThread = new Thread(new ParameterizedThreadStart(HandleClientComm));
                 clientThread.Start(client);
             }
@@ -120,20 +130,7 @@ namespace app
             else if (e.KeyCode == Keys.Tab) { t += "{TAB}"; }
             else if (e.KeyValue == 18) { t += "%"; }
             else if (e.KeyCode == Keys.ShiftKey) { t += "+"; ShiftPress = true; }
-            /*else if (e.KeyCode.ToString() == "F0") { t += "{" + e.KeyCode + "}"; }
-            else if (e.KeyCode.ToString() == "F1") { t += "{" + e.KeyCode + "}"; }
-            else if (e.KeyCode.ToString() == "F2") { t += "{" + e.KeyCode + "}"; }
-            else if (e.KeyCode.ToString() == "F3") { t += "{" + e.KeyCode + "}"; }
-            else if (e.KeyCode.ToString() == "F4") { t += "{" + e.KeyCode + "}"; }
-            else if (e.KeyCode.ToString() == "F5") { t += "{" + e.KeyCode + "}"; }
-            else if (e.KeyCode.ToString() == "F6") { t += "{" + e.KeyCode + "}"; }
-            else if (e.KeyCode.ToString() == "F7") { t += "{" + e.KeyCode + "}"; }
-            else if (e.KeyCode.ToString() == "F8") { t += "{" + e.KeyCode + "}"; }
-            else if (e.KeyCode.ToString() == "F9") { t += "{" + e.KeyCode + "}"; }
-            else if (e.KeyCode.ToString() == "F10") { t += "{" + e.KeyCode + "}"; }
-            else if (e.KeyCode.ToString() == "F11") { t += "{" + e.KeyCode + "}"; }
-            else if (e.KeyCode.ToString() == "F12") { t += "{" + e.KeyCode + "}"; }*/
-            else if (e.Shift && e.KeyCode.ToString().StartsWith("F") && e.KeyCode.ToString().Length != 1) { t += ("{" + e.KeyCode + "}"); }
+            else if (e.KeyCode.ToString().StartsWith("F") && e.KeyCode.ToString().Length != 1) { t += ("{" + e.KeyCode + "}"); }
             else if (e.Shift && e.KeyCode.ToString() == "D0") { t += "{)}"; }
             else if (e.Shift && e.KeyCode.ToString() == "D1") { t += "{!}"; }
             else if (e.Shift && e.KeyCode.ToString() == "D2") { t += "{@}"; }
@@ -144,24 +141,13 @@ namespace app
             else if (e.Shift && e.KeyCode.ToString() == "D7") { t += "{&}"; }
             else if (e.Shift && e.KeyCode.ToString() == "D8") { t += "{*}"; }
             else if (e.Shift && e.KeyCode.ToString() == "D9") { t += "{(}"; }
-            else if (e.KeyCode.ToString().StartsWith("D") && e.KeyCode.ToString().Length != 1) { t += (e.KeyCode.ToString().Substring(1)); }
-            /*else if (e.KeyCode.ToString() == "NumPad0") { t += "{" + e.KeyCode + "}"; }
-            else if (e.KeyCode.ToString() == "NumPad1") { t += "{" + e.KeyCode + "}"; }
-            else if (e.KeyCode.ToString() == "NumPad2") { t += "{" + e.KeyCode + "}"; }
-            else if (e.KeyCode.ToString() == "NumPad3") { t += "{" + e.KeyCode + "}"; }
-            else if (e.KeyCode.ToString() == "NumPad4") { t += "{" + e.KeyCode + "}"; }
-            else if (e.KeyCode.ToString() == "NumPad5") { t += "{" + e.KeyCode + "}"; }
-            else if (e.KeyCode.ToString() == "NumPad6") { t += "{" + e.KeyCode + "}"; }
-            else if (e.KeyCode.ToString() == "NumPad7") { t += "{" + e.KeyCode + "}"; }
-            else if (e.KeyCode.ToString() == "NumPad8") { t += "{" + e.KeyCode + "}"; }
-            else if (e.KeyCode.ToString() == "NumPad9") { t += "{" + e.KeyCode + "}"; }*/
-            else if (e.KeyCode.ToString().StartsWith("NumPad")) { t += ("{" + e.KeyCode + "}"); }
+            else if (e.KeyCode.ToString().StartsWith("NumPad")) { t += e.KeyCode.ToString().Substring(6); }
             else if (e.KeyCode.ToString() == "Up") { t += "{UP}"; }
             else if (e.KeyCode.ToString() == "Down") { t += "{DOWN}"; }
             else if (e.KeyCode.ToString() == "Left") { t += "{LEFT}"; }
             else if (e.KeyCode.ToString() == "Right") { t += "{RIGHT}"; }
             else if (e.KeyCode.ToString() == "Return") { t += "{ENTER}"; }
-            else if (e.KeyCode.ToString() == "Capital") { t += "{CAPLOCK}"; }
+            else if (e.KeyCode.ToString() == "Capital") { t += "{CAPSLOCK}"; }
             else if (e.KeyCode.ToString() == "Escape") { t += "{ESC}"; }
             else if (e.KeyCode.ToString() == "Back") { t += "{BACKSPACE}"; }
             else if (e.KeyCode.ToString() == "Space") { t += " "; }
@@ -177,15 +163,15 @@ namespace app
             else if (e.KeyCode.ToString() == "Break") { t += "{SPACE}"; }
             else if (e.Shift && e.KeyValue == 189) { t += "{_}"; }
             else if (e.Shift && e.KeyValue == 187) { t += "{+}"; }
-            else if (e.Shift && e.KeyValue == 219) { t += "{"; }
-            else if (e.Shift && e.KeyValue == 221) { t += "}"; }
+            else if (e.Shift && e.KeyValue == 219) { t += "{{}"; }
+            else if (e.Shift && e.KeyValue == 221) { t += "{}}"; }
             else if (e.Shift && e.KeyValue == 220) { t += "|"; }
             else if (e.Shift && e.KeyValue == 186) { t += "{:}"; }
             else if (e.Shift && e.KeyValue == 222) { t += "\""; }
             else if (e.Shift && e.KeyValue == 188) { t += "<"; }
             else if (e.Shift && e.KeyValue == 190) { t += ">"; }
             else if (e.Shift && e.KeyValue == 191) { t += "?"; }
-            else if (e.Shift && e.KeyValue == 192) { t += "~"; }
+            else if (e.Shift && e.KeyValue == 192) { t += "{~}"; }
             else if (e.KeyValue == 192) { t += "`"; }
             else if (e.KeyValue == 189) { t += "{-}"; }
             else if (e.KeyValue == 187) { t += "{=}"; }
@@ -200,6 +186,7 @@ namespace app
             else if (e.KeyValue == 106) { t += "*"; }
             else if (e.KeyValue == 109) { t += "-"; }
             else if (e.KeyValue == 107) { t += "{+}"; }
+            else if (e.KeyCode.ToString().StartsWith("D") && e.KeyCode.ToString().Length != 1) { t += (e.KeyCode.ToString().Substring(1)); }
             else if (e.Shift && e.KeyValue >= 65 && e.KeyValue <= 90) { t += "+" + e.KeyCode.ToString().ToLower(); }
             else if (e.KeyValue >= 65 && e.KeyValue <= 90) { t += e.KeyCode.ToString().ToLower(); }
             else { t = t + e.KeyCode + " - " + e.KeyValue; }
@@ -210,8 +197,8 @@ namespace app
             if (e.KeyCode == Keys.ShiftKey) { ShiftPress = false; }
             if (t.Length != 0)
             {
-/*                Console.Write(t.Length);
-                Console.WriteLine(" - " + t.Replace("++", "+"));*/
+                Console.Write(t.Length);
+                Console.WriteLine(" - " + t.Replace("++", "+"));
                 SendCommandToClient("KEYBOARD:" + t.Replace("++", "+"));
             }
             t = "";
@@ -226,6 +213,7 @@ namespace app
         {
             client = new TcpClient("127.0.0.1", 5000);
             serverStream = client.GetStream();
+            KeyPreview = false;
             captureThread = new Thread(new ThreadStart(CaptureScreen));
             captureThread.Start();
 
@@ -280,10 +268,15 @@ namespace app
             switch (commandParts[0])
             {
                 case "KEYBOARD":
-                    /*SendKeys.SendWait(commandParts[1]);*/
-                    Console.WriteLine(commandParts[1]);
+                    try 
+                    {
+                        SendKeys.SendWait(commandParts[1]);
+                    } catch 
+                    {
+                        Console.WriteLine(commandParts[1]);
+                    }
                     break;
-                case "MOVE_MOUSE":
+/*                case "MOVE_MOUSE":
                     int x = int.Parse(commandParts[1]);
                     int y = int.Parse(commandParts[2]);
                     SetCursorPos(x, y);
@@ -297,18 +290,18 @@ namespace app
                 case "SEND_KEYSTROKE":
                     char key = commandParts[1][0];
                     SendKeys.SendWait(key.ToString());
-                    break;
+                    break;*/
             }
         }
 
-        [DllImport("user32.dll")]
+       /* [DllImport("user32.dll")]
         private static extern bool SetCursorPos(int X, int Y);
 
         [DllImport("user32.dll")]
         private static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
 
         private const int MOUSEEVENTF_LEFTDOWN = 0x02;
-        private const int MOUSEEVENTF_LEFTUP = 0x04;
+        private const int MOUSEEVENTF_LEFTUP = 0x04;*/
 
     }
 }

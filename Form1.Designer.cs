@@ -30,11 +30,11 @@
         {
             this.pictureBoxDisplay = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.listBoxClients = new System.Windows.Forms.ListBox();
-            this.btnSend = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btnListen = new System.Windows.Forms.Button();
             this.btnConnect = new System.Windows.Forms.Button();
+            this.btnListen = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnSend = new System.Windows.Forms.Button();
+            this.listBoxClients = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDisplay)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -44,7 +44,8 @@
             this.pictureBoxDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxDisplay.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxDisplay.Name = "pictureBoxDisplay";
-            this.pictureBoxDisplay.Size = new System.Drawing.Size(916, 571);
+            this.pictureBoxDisplay.Size = new System.Drawing.Size(924, 571);
+            this.pictureBoxDisplay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxDisplay.TabIndex = 0;
             this.pictureBoxDisplay.TabStop = false;
             // 
@@ -55,53 +56,15 @@
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.btnSend);
             this.groupBox1.Controls.Add(this.listBoxClients);
-            this.groupBox1.Location = new System.Drawing.Point(681, 0);
+            this.groupBox1.Location = new System.Drawing.Point(612, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(235, 400);
+            this.groupBox1.Size = new System.Drawing.Size(304, 400);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
-            // 
-            // listBoxClients
-            // 
-            this.listBoxClients.FormattingEnabled = true;
-            this.listBoxClients.ItemHeight = 16;
-            this.listBoxClients.Location = new System.Drawing.Point(6, 181);
-            this.listBoxClients.Name = "listBoxClients";
-            this.listBoxClients.Size = new System.Drawing.Size(223, 116);
-            this.listBoxClients.TabIndex = 0;
-            // 
-            // btnSend
-            // 
-            this.btnSend.Location = new System.Drawing.Point(154, 358);
-            this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(75, 36);
-            this.btnSend.TabIndex = 1;
-            this.btnSend.Text = "Send";
-            this.btnSend.UseVisualStyleBackColor = true;
-            this.btnSend.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(6, 312);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(223, 40);
-            this.textBox1.TabIndex = 2;
-            // 
-            // btnListen
-            // 
-            this.btnListen.Location = new System.Drawing.Point(17, 51);
-            this.btnListen.Name = "btnListen";
-            this.btnListen.Size = new System.Drawing.Size(75, 23);
-            this.btnListen.TabIndex = 3;
-            this.btnListen.Text = "Listen";
-            this.btnListen.UseVisualStyleBackColor = true;
-            this.btnListen.Click += new System.EventHandler(this.btnListen_Click);
             // 
             // btnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(137, 51);
+            this.btnConnect.Location = new System.Drawing.Point(136, 79);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(75, 23);
             this.btnConnect.TabIndex = 4;
@@ -109,11 +72,48 @@
             this.btnConnect.UseVisualStyleBackColor = true;
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
+            // btnListen
+            // 
+            this.btnListen.Location = new System.Drawing.Point(16, 79);
+            this.btnListen.Name = "btnListen";
+            this.btnListen.Size = new System.Drawing.Size(75, 23);
+            this.btnListen.TabIndex = 3;
+            this.btnListen.Text = "Listen";
+            this.btnListen.UseVisualStyleBackColor = true;
+            this.btnListen.Click += new System.EventHandler(this.btnListen_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(6, 312);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(292, 40);
+            this.textBox1.TabIndex = 2;
+            // 
+            // btnSend
+            // 
+            this.btnSend.Location = new System.Drawing.Point(223, 358);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Size = new System.Drawing.Size(75, 36);
+            this.btnSend.TabIndex = 1;
+            this.btnSend.Text = "Send";
+            this.btnSend.UseVisualStyleBackColor = true;
+            this.btnSend.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // listBoxClients
+            // 
+            this.listBoxClients.FormattingEnabled = true;
+            this.listBoxClients.ItemHeight = 16;
+            this.listBoxClients.Location = new System.Drawing.Point(6, 181);
+            this.listBoxClients.Name = "listBoxClients";
+            this.listBoxClients.Size = new System.Drawing.Size(292, 116);
+            this.listBoxClients.TabIndex = 0;
+            // 
             // App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(916, 571);
+            this.ClientSize = new System.Drawing.Size(924, 571);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBoxDisplay);
             this.KeyPreview = true;

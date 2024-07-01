@@ -8,3 +8,13 @@ D:\THmang_C#\project_RDP\App_v2\app\obj\Debug\app.csproj.GenerateResource.cache
 D:\THmang_C#\project_RDP\App_v2\app\obj\Debug\app.csproj.CoreCompileInputs.cache
 D:\THmang_C#\project_RDP\App_v2\app\obj\Debug\app.exe
 D:\THmang_C#\project_RDP\App_v2\app\obj\Debug\app.pdb
+D:\THmang_C#\DoAn_LTM\app\bin\Debug\app.exe.config
+D:\THmang_C#\DoAn_LTM\app\bin\Debug\app.exe
+D:\THmang_C#\DoAn_LTM\app\bin\Debug\app.pdb
+D:\THmang_C#\DoAn_LTM\app\obj\Debug\app.csproj.AssemblyReference.cache
+D:\THmang_C#\DoAn_LTM\app\obj\Debug\app.App.resources
+D:\THmang_C#\DoAn_LTM\app\obj\Debug\app.Properties.Resources.resources
+D:\THmang_C#\DoAn_LTM\app\obj\Debug\app.csproj.GenerateResource.cache
+D:\THmang_C#\DoAn_LTM\app\obj\Debug\app.csproj.CoreCompileInputs.cache
+D:\THmang_C#\DoAn_LTM\app\obj\Debug\app.exe
+D:\THmang_C#\DoAn_LTM\app\obj\Debug\app.pdb

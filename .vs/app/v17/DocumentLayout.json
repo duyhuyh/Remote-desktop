@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\THmang_C#\\project_RDP\\App_v2\\app\\",
+  "WorkspaceRootPath": "D:\\THmang_C#\\DoAn_LTM\\app\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{409891C3-571D-461B-A239-BEF8A1C4B037}|app.csproj|d:\\thmang_c#\\project_rdp\\app_v2\\app\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{409891C3-571D-461B-A239-BEF8A1C4B037}|app.csproj|d:\\thmang_c#\\doan_ltm\\app\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{409891C3-571D-461B-A239-BEF8A1C4B037}|app.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{409891C3-571D-461B-A239-BEF8A1C4B037}|app.csproj|d:\\thmang_c#\\project_rdp\\app_v2\\app\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{409891C3-571D-461B-A239-BEF8A1C4B037}|app.csproj|D:\\THmang_C#\\DoAn_LTM\\app\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{409891C3-571D-461B-A239-BEF8A1C4B037}|app.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -18,17 +18,25 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Form1.cs",
-              "DocumentMoniker": "D:\\THmang_C#\\project_RDP\\App_v2\\app\\Form1.cs",
+              "DocumentMoniker": "D:\\THmang_C#\\DoAn_LTM\\app\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "D:\\THmang_C#\\project_RDP\\App_v2\\app\\Form1.cs",
+              "ToolTip": "D:\\THmang_C#\\DoAn_LTM\\app\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AQIAAAcBAAAAAAAAAAAowA0BAABaAAAA",
+              "ViewState": "AQIAANAAAAAAAAAAAAAWwNUAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-30T20:07:58.814Z",
               "EditorCaption": ""
@@ -37,9 +45,9 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "D:\\THmang_C#\\project_RDP\\App_v2\\app\\Form1.cs",
+              "DocumentMoniker": "D:\\THmang_C#\\DoAn_LTM\\app\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "D:\\THmang_C#\\project_RDP\\App_v2\\app\\Form1.cs [Design]",
+              "ToolTip": "D:\\THmang_C#\\DoAn_LTM\\app\\Form1.cs [Design]",
               "RelativeToolTip": "Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-30T20:06:15.951Z",
