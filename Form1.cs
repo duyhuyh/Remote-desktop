@@ -40,6 +40,8 @@ namespace app
         {
             InitializeComponent();
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            this.MouseMove += new MouseEventHandler(Form1_MouseMove);
+            this.MouseClick += new MouseEventHandler(Form1_MouseClick);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -53,6 +55,20 @@ namespace app
         }
 
         /*-----------------------------SERVER---------------------------------------------------------*/
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        {
+            string command = $"MOVE_MOUSE:{e.X}:{e.Y}";
+            SendCommandToClient(command);
+        }
+
+        private void Form1_MouseClick(object sender, MouseEventArgs e)
+        {
+            string button = e.Button == MouseButtons.Left ? "LEFT" : e.Button == MouseButtons.Right ? "RIGHT" : "MIDDLE";
+            string command = $"CLICK_MOUSE:{button}";
+            SendCommandToClient(command);
+        }
+
+
 
         private void btnListen_Click(object sender, EventArgs e)
         {
@@ -268,15 +284,16 @@ namespace app
             switch (commandParts[0])
             {
                 case "KEYBOARD":
-                    try 
+                    try
                     {
                         SendKeys.SendWait(commandParts[1]);
-                    } catch 
+                    }
+                    catch
                     {
                         Console.WriteLine(commandParts[1]);
                     }
                     break;
-/*                case "MOVE_MOUSE":
+                case "MOVE_MOUSE":
                     int x = int.Parse(commandParts[1]);
                     int y = int.Parse(commandParts[2]);
                     SetCursorPos(x, y);
@@ -286,22 +303,35 @@ namespace app
                     {
                         mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
                     }
+                    else if (commandParts[1] == "RIGHT")
+                    {
+                        mouse_event(MOUSEEVENTF_RIGHTDOWN | MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
+                    }
+                    else if (commandParts[1] == "MIDDLE")
+                    {
+                        mouse_event(MOUSEEVENTF_MIDDLEDOWN | MOUSEEVENTF_MIDDLEUP, 0, 0, 0, 0);
+                    }
                     break;
                 case "SEND_KEYSTROKE":
                     char key = commandParts[1][0];
                     SendKeys.SendWait(key.ToString());
-                    break;*/
+                    break;
             }
         }
 
-       /* [DllImport("user32.dll")]
+        [DllImport("user32.dll")]
         private static extern bool SetCursorPos(int X, int Y);
 
         [DllImport("user32.dll")]
         private static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
 
         private const int MOUSEEVENTF_LEFTDOWN = 0x02;
-        private const int MOUSEEVENTF_LEFTUP = 0x04;*/
+        private const int MOUSEEVENTF_LEFTUP = 0x04;
+        private const int MOUSEEVENTF_RIGHTDOWN = 0x08;
+        private const int MOUSEEVENTF_RIGHTUP = 0x10;
+        private const int MOUSEEVENTF_MIDDLEDOWN = 0x20;
+        private const int MOUSEEVENTF_MIDDLEUP = 0x40;
+
 
     }
 }

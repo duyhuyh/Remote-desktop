@@ -18,3 +18,13 @@ D:\THmang_C#\DoAn_LTM\app\obj\Debug\app.csproj.GenerateResource.cache
 D:\THmang_C#\DoAn_LTM\app\obj\Debug\app.csproj.CoreCompileInputs.cache
 D:\THmang_C#\DoAn_LTM\app\obj\Debug\app.exe
 D:\THmang_C#\DoAn_LTM\app\obj\Debug\app.pdb
+G:\doanLTM\Duyy\Remote-desktop\bin\Debug\app.exe.config
+G:\doanLTM\Duyy\Remote-desktop\bin\Debug\app.exe
+G:\doanLTM\Duyy\Remote-desktop\bin\Debug\app.pdb
+G:\doanLTM\Duyy\Remote-desktop\obj\Debug\app.csproj.AssemblyReference.cache
+G:\doanLTM\Duyy\Remote-desktop\obj\Debug\app.App.resources
+G:\doanLTM\Duyy\Remote-desktop\obj\Debug\app.Properties.Resources.resources
+G:\doanLTM\Duyy\Remote-desktop\obj\Debug\app.csproj.GenerateResource.cache
+G:\doanLTM\Duyy\Remote-desktop\obj\Debug\app.csproj.CoreCompileInputs.cache
+G:\doanLTM\Duyy\Remote-desktop\obj\Debug\app.exe
+G:\doanLTM\Duyy\Remote-desktop\obj\Debug\app.pdb
