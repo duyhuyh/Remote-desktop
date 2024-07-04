@@ -39,6 +39,7 @@ namespace app
 
         /*for server*/
 
+        private bool isSerRun = false;
         private TcpListener tcpListener;
         private Thread listenThread;
         private List<TcpClient> clients = new List<TcpClient>();
@@ -48,6 +49,7 @@ namespace app
 
         /*for client*/
 
+        private bool isCliRun = false;
         private TcpClient client;
         private NetworkStream serverStream;
         private Thread captureThread;
@@ -120,30 +122,41 @@ namespace app
 
         private void btnListen_Click(object sender, EventArgs e)
         {
-            string Username = txtUSN.Text;
-            string Password = txtPSW.Text;
-            txtPSW.Enabled = false;
-            txtUSN.Enabled = false;
-            string Id = ComputeSHA256Hash(Username + Password);
-            var data = new Data
+            if (btnListen.Text == "Listen") 
             {
-                id = Id,
-                ipaddress = GetLocalIPv4(),
-            };
-            firebase.Set("Information/" + Id, data);
+                btnListen.Text = "Stop";
+                isSerRun = true;
+                KeyPreview = true;
 
-            tcpListener = new TcpListener(IPAddress.Any, 5000);
-            listenThread = new Thread(new ThreadStart(ListenForClients));
-            listenThread.Start();
-            listBoxClients.Items.Add("Server started...");
-            btnConnect.Enabled = false;
-            btnListen.Enabled = false;
-            if (!isMaxDisplay)
+                string Username = txtUSN.Text;
+                string Password = txtPSW.Text;
+                txtPSW.Enabled = false;
+                txtUSN.Enabled = false;
+                string Id = ComputeSHA256Hash(Username + Password);
+                var data = new Data
+                {
+                    id = Id,
+                    ipaddress = GetLocalIPv4(),
+                    port = 5000
+                };
+                firebase.Set("Information/" + Id, data);
+
+                tcpListener = new TcpListener(IPAddress.Any, 5000);
+                listenThread = new Thread(new ThreadStart(ListenForClients));
+                listenThread.Start();
+                listBoxClients.Items.Add("Server started...");
+                btnConnect.Enabled = false;
+                if (!isMaxDisplay)
+                {
+                    WindowState = FormWindowState.Maximized;
+                    FormBorderStyle = FormBorderStyle.FixedSingle;
+
+                    isMaxDisplay = true;
+                }
+            }
+            else 
             {
-                WindowState = FormWindowState.Maximized;
-                FormBorderStyle = FormBorderStyle.FixedSingle;
-                
-                isMaxDisplay = true;
+                StopServer();
             }
         }
         
@@ -165,27 +178,92 @@ namespace app
         {
             TcpClient tcpClient = (TcpClient)client_obj;
             NetworkStream clientStream = tcpClient.GetStream();
-
-            while (true)
+            try 
             {
-                byte[] sizeBytes = new byte[4];
-                clientStream.Read(sizeBytes, 0, sizeBytes.Length);
-                int size = BitConverter.ToInt32(sizeBytes, 0);
-
-                byte[] data = new byte[size];
-                int bytesRead = 0;
-                while (bytesRead < size)
+                while (true)
                 {
-                    bytesRead += clientStream.Read(data, bytesRead, size - bytesRead);
-                }
+                    byte[] sizeBytes = new byte[4];
+                    clientStream.Read(sizeBytes, 0, sizeBytes.Length);
+                    int size = BitConverter.ToInt32(sizeBytes, 0);
 
-                using (MemoryStream ms = new MemoryStream(data))
-                {
-                    pictureBoxDisplay.Image?.Dispose(); // Dispose previous image to release resources
-                    pictureBoxDisplay.Image = new Bitmap(ms);
+                    byte[] data = new byte[size];
+                    int bytesRead = 0;
+                    while (bytesRead < size)
+                    {
+                        bytesRead += clientStream.Read(data, bytesRead, size - bytesRead);
+                    }
+
+                    using (MemoryStream ms = new MemoryStream(data))
+                    {
+                        pictureBoxDisplay.Image?.Dispose(); // Dispose previous image to release resources
+                        pictureBoxDisplay.Image = new Bitmap(ms);
+                    }
                 }
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Client disconnected!");
+            }
+            finally
+            {
+                // Clean up the client
+                tcpClient.Close();
+                clients.Remove(tcpClient);
+                tcpListener.Stop();
+                listenThread.Abort();
 
+                listBoxClients.Invoke(new Action(() => listBoxClients.Items.Clear()));
+                pictureBoxDisplay.Invoke(new Action(() =>
+                {
+                    pictureBoxDisplay.Image?.Dispose(); // Dispose previous image to release resources
+                    pictureBoxDisplay.Image = null; // Clear the PictureBox
+                }));
+                this.Invoke(new Action(() =>
+                {
+                    if (clients.Count == 0)
+                    {
+                        txtPSW.Enabled = true;
+                        txtUSN.Enabled = true;
+                        btnConnect.Enabled = true;
+                        KeyPreview = false;
+                        btnListen.Text = "Listen";
+                    }
+                }));
+            }
+
+        }
+
+        private void StopServer()
+        {
+            if (tcpListener != null)
+            {
+                tcpListener.Stop();
+            }
+
+            foreach (var client in clients)
+            {
+                client.Close();
+            }
+
+            clients.Clear();
+
+            if (listenThread != null && listenThread.IsAlive)
+            {
+                listenThread.Abort();
+            }
+
+            // Update the UI to reflect that the server has stopped
+            this.Invoke(new Action(() =>
+            {
+                isSerRun = false;
+                KeyPreview = false;
+                txtPSW.Enabled = true;
+                txtUSN.Enabled = true;
+                btnConnect.Enabled = true;
+                btnListen.Text = "Listen";
+                pictureBoxDisplay.Image?.Dispose(); // Dispose previous image to release resources
+                pictureBoxDisplay.Image = null; // Clear the PictureBox
+            }));
         }
 
         private void SendCommandToClient(string command)
@@ -287,57 +365,94 @@ namespace app
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
-            string Id = ComputeSHA256Hash(txtUSN.Text + txtPSW.Text);
-            FirebaseResponse res = firebase.Get("Information/" + Id);
-            Data obj = res.ResultAs<Data>();
+            if (btnConnect.Text == "Connect")
+            {
+                btnConnect.Text = "Disconnect";
+                isCliRun = true;
 
-            client = new TcpClient(obj.ipaddress, 5000);
-            serverStream = client.GetStream();
-            KeyPreview = false;
-            captureThread = new Thread(new ThreadStart(CaptureScreen));
-            captureThread.Start();
+                string Id = ComputeSHA256Hash(txtUSN.Text + txtPSW.Text);
+                FirebaseResponse res = firebase.Get("Information/" + Id);
+                Data obj = res.ResultAs<Data>();
+                if (obj == null)
+                {
+                    MessageBox.Show("Can't connect to orther PC, please try again!");
+                    Disconnect();
+                }
+                else 
+                {
+                    client = new TcpClient(obj.ipaddress, obj.port);
+                    serverStream = client.GetStream();
 
-            commandThread = new Thread(new ThreadStart(ListenForCommands));
-            commandThread.Start();
+                    btnListen.Enabled = false;
+                    KeyPreview = false;
+
+                    captureThread = new Thread(new ThreadStart(CaptureScreen));
+                    captureThread.Start();
+
+                    commandThread = new Thread(new ThreadStart(ListenForCommands));
+                    commandThread.Start();
+
+                }
+            }
+            else 
+            {
+                Disconnect();
+            }
         }
 
         private void CaptureScreen()
         {
-            while (true)
+            while (isCliRun)
             {
-                Rectangle bound = Screen.PrimaryScreen.Bounds;
-                Bitmap screenshot = new Bitmap(1920, 1080, PixelFormat.Format32bppArgb);
-                Graphics graphics = Graphics.FromImage(screenshot);
-                graphics.CopyFromScreen(0, 0, 0, 0, screenshot.Size, CopyPixelOperation.SourceCopy);
-
-                using (MemoryStream ms = new MemoryStream())
+                try
                 {
-                    ImageCodecInfo jpgEncoder = ImageCodecInfo.GetImageEncoders().FirstOrDefault(c => c.FormatID == ImageFormat.Jpeg.Guid);
-                    EncoderParameters encoderParams = new EncoderParameters(1);
-                    encoderParams.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 80L);
-                    screenshot.Save(ms, jpgEncoder, encoderParams);
+                    Rectangle bound = Screen.PrimaryScreen.Bounds;
+                    Bitmap screenshot = new Bitmap(1920, 1080, PixelFormat.Format32bppArgb);
+                    Graphics graphics = Graphics.FromImage(screenshot);
+                    graphics.CopyFromScreen(0, 0, 0, 0, screenshot.Size, CopyPixelOperation.SourceCopy);
 
-                    byte[] data = ms.ToArray();
-                    byte[] sizebyte = BitConverter.GetBytes(data.Length);
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        ImageCodecInfo jpgEncoder = ImageCodecInfo.GetImageEncoders().FirstOrDefault(c => c.FormatID == ImageFormat.Jpeg.Guid);
+                        EncoderParameters encoderParams = new EncoderParameters(1);
+                        encoderParams.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 80L);
+                        screenshot.Save(ms, jpgEncoder, encoderParams);
 
-                    serverStream.Write(sizebyte, 0, sizebyte.Length);
-                    serverStream.Write(data, 0, data.Length);
+                        byte[] data = ms.ToArray();
+                        byte[] sizebyte = BitConverter.GetBytes(data.Length);
+
+                        serverStream.Write(sizebyte, 0, sizebyte.Length);
+                        serverStream.Write(data, 0, data.Length);
+                    }
+
+                    Thread.Sleep(100);
                 }
-
-                Thread.Sleep(100);
+                catch (Exception) 
+                {
+                    Disconnect();
+                    break;
+                }
             }
         }
 
         private void ListenForCommands()
         {
-            while (true)
+            while (isCliRun)
             {
-                byte[] commandBuffer = new byte[4096];
-                int bytesRead = serverStream.Read(commandBuffer, 0, commandBuffer.Length);
-                if (bytesRead > 0)
+                try 
                 {
-                    string command = Encoding.ASCII.GetString(commandBuffer, 0, bytesRead);
-                    ExecuteCommand(command);
+                    byte[] commandBuffer = new byte[4096];
+                    int bytesRead = serverStream.Read(commandBuffer, 0, commandBuffer.Length);
+                    if (bytesRead > 0)
+                    {
+                        string command = Encoding.ASCII.GetString(commandBuffer, 0, bytesRead);
+                        ExecuteCommand(command);
+                    }
+                }
+                catch 
+                {
+                    Disconnect();
+                    break;
                 }
             }
         }
@@ -374,6 +489,39 @@ namespace app
             }
         }
 
+        private void Disconnect()
+        {
+            isCliRun = false;
+
+            if (serverStream != null)
+            {
+                serverStream.Close();
+            }
+
+            if (client != null)
+            {
+                client.Close();
+            }
+
+            if (captureThread != null && captureThread.IsAlive)
+            {
+                captureThread.Abort();
+            }
+
+            if (commandThread != null && commandThread.IsAlive)
+            {
+                commandThread.Abort();
+            }
+
+            this.Invoke(new Action(() =>
+            {
+                /*listBoxStatus.Items.Add("Client disconnected.");*/
+                KeyPreview = false;
+                btnConnect.Text = "Connect";
+                btnListen.Enabled = true;
+            }));
+        }
+
         private void btnRandom_Click(object sender, EventArgs e)
         {
             string prev = txtPSW.Text;
@@ -393,16 +541,9 @@ namespace app
         private void App_FormClosing(object sender, FormClosingEventArgs e)
         {
             firebase.Delete("Information/" + ComputeSHA256Hash(txtUSN.Text + txtPSW.Text));
+            if (isSerRun) StopServer();
+            if (isCliRun) Disconnect();
         }
-
-        /* [DllImport("user32.dll")]
-         private static extern bool SetCursorPos(int X, int Y);
-
-         [DllImport("user32.dll")]
-         private static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
-
-         private const int MOUSEEVENTF_LEFTDOWN = 0x02;
-         private const int MOUSEEVENTF_LEFTUP = 0x04;*/
 
     }
 }

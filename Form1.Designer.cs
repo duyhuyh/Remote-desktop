@@ -31,16 +31,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(App));
             this.pictureBoxDisplay = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnRandom = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtPSW = new System.Windows.Forms.TextBox();
+            this.txtUSN = new System.Windows.Forms.TextBox();
             this.btnConnect = new System.Windows.Forms.Button();
             this.btnListen = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.listBoxClients = new System.Windows.Forms.ListBox();
-            this.txtUSN = new System.Windows.Forms.TextBox();
-            this.txtPSW = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnRandom = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDisplay)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -72,6 +72,51 @@
             this.groupBox1.Size = new System.Drawing.Size(304, 400);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
+            // 
+            // btnRandom
+            // 
+            this.btnRandom.CausesValidation = false;
+            this.btnRandom.Image = ((System.Drawing.Image)(resources.GetObject("btnRandom.Image")));
+            this.btnRandom.Location = new System.Drawing.Point(209, 86);
+            this.btnRandom.Name = "btnRandom";
+            this.btnRandom.Size = new System.Drawing.Size(30, 30);
+            this.btnRandom.TabIndex = 9;
+            this.btnRandom.UseVisualStyleBackColor = true;
+            this.btnRandom.Click += new System.EventHandler(this.btnRandom_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(20, 72);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(73, 16);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Pass word:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(21, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 16);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "User name:";
+            // 
+            // txtPSW
+            // 
+            this.txtPSW.Location = new System.Drawing.Point(23, 86);
+            this.txtPSW.Multiline = true;
+            this.txtPSW.Name = "txtPSW";
+            this.txtPSW.Size = new System.Drawing.Size(180, 30);
+            this.txtPSW.TabIndex = 6;
+            // 
+            // txtUSN
+            // 
+            this.txtUSN.Location = new System.Drawing.Point(23, 36);
+            this.txtUSN.Multiline = true;
+            this.txtUSN.Name = "txtUSN";
+            this.txtUSN.Size = new System.Drawing.Size(180, 30);
+            this.txtUSN.TabIndex = 5;
             // 
             // btnConnect
             // 
@@ -120,51 +165,6 @@
             this.listBoxClients.Size = new System.Drawing.Size(292, 116);
             this.listBoxClients.TabIndex = 0;
             // 
-            // txtUSN
-            // 
-            this.txtUSN.Location = new System.Drawing.Point(23, 36);
-            this.txtUSN.Multiline = true;
-            this.txtUSN.Name = "txtUSN";
-            this.txtUSN.Size = new System.Drawing.Size(180, 30);
-            this.txtUSN.TabIndex = 5;
-            // 
-            // txtPSW
-            // 
-            this.txtPSW.Location = new System.Drawing.Point(23, 86);
-            this.txtPSW.Multiline = true;
-            this.txtPSW.Name = "txtPSW";
-            this.txtPSW.Size = new System.Drawing.Size(180, 30);
-            this.txtPSW.TabIndex = 6;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 16);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "User name:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 72);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 16);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Pass word:";
-            // 
-            // btnRandom
-            // 
-            this.btnRandom.CausesValidation = false;
-            this.btnRandom.Image = ((System.Drawing.Image)(resources.GetObject("btnRandom.Image")));
-            this.btnRandom.Location = new System.Drawing.Point(209, 86);
-            this.btnRandom.Name = "btnRandom";
-            this.btnRandom.Size = new System.Drawing.Size(30, 30);
-            this.btnRandom.TabIndex = 9;
-            this.btnRandom.UseVisualStyleBackColor = true;
-            this.btnRandom.Click += new System.EventHandler(this.btnRandom_Click);
-            // 
             // App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -172,7 +172,6 @@
             this.ClientSize = new System.Drawing.Size(924, 571);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBoxDisplay);
-            this.KeyPreview = true;
             this.Name = "App";
             this.Text = "App";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.App_FormClosing);

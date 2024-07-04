@@ -120,10 +120,10 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnRandom.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAB9SURBVChTfY29DYMwGAVdIEoqRMMKKRkgbTZIahBt9qCn
-        TZVhEmWp3BkLISM46eTP7/knZNzwgz+8GBxxxQYn7A3OeOAby7g7wVfrZdxToF+N+MU5zQPardzRIsfM
-        LuKNJxpWad3OdvHVDls0zDGz88zK0cEdL7TYagYh/AFnARC8LgRLgAAAAABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        EQAACxEBf2RfkQAAAH1JREFUKFN9jb0NgzAYBV0gSipEwwopGSBtNkhqEG32oKdNlWESZancGQshIzjp
+        5M/v+Sdk3PCDP7wYHHHFBifsDc544BvLuDvBV+tl3FOgX434xTnNA9qt3NEix8wu4o0nGlZp3c528dUO
+        WzTMMbPzzMrRwR0vtNhqBiH8AWcBELwuBEuAAAAAAElFTkSuQmCC
 </value>
   </data>
 </root>
