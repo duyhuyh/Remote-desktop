@@ -7,17 +7,36 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Reflection.Emit;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.ComponentModel.Com2Interop;
+using FireSharp.Config;
+using FireSharp.Interfaces;
+using FireSharp.Response;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace app
 {
     public partial class App : Form
     {
+
+        /*for firebase*/
+
+        IFirebaseConfig config = new FirebaseConfig
+        {
+            AuthSecret = "O5JDBP85w8WgL0rMajziiWdTxzoilXWYpbaxAzKA",
+            BasePath = "https://fir-firebase-winform-default-rtdb.firebaseio.com/"
+        };
+
+        IFirebaseClient firebase;
+
         /*for server*/
 
         private TcpListener tcpListener;
@@ -44,7 +63,7 @@ namespace app
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            firebase = new FireSharp.FirebaseClient(config);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -52,10 +71,67 @@ namespace app
 
         }
 
+        private string ComputeSHA256Hash(string input)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(input);
+                byte[] hash = sha256.ComputeHash(bytes);
+                return BitConverter.ToString(hash).Replace("-", "").ToLower();
+            }
+        }
+
+        private string GetLocalIPv4()
+        {
+            foreach (NetworkInterface networkInterface in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 &&
+                    networkInterface.OperationalStatus == OperationalStatus.Up &&
+                    networkInterface.Name.Contains("Wi-Fi"))
+                {
+                    IPInterfaceProperties properties = networkInterface.GetIPProperties();
+                    foreach (UnicastIPAddressInformation unicastAddress in properties.UnicastAddresses)
+                    {
+                        if (unicastAddress.Address.AddressFamily == AddressFamily.InterNetwork)
+                        {
+                            return unicastAddress.Address.ToString();
+                        }
+                    }
+                }
+            }
+            return "Không tìm thấy địa chỉ IPv4";
+        }
+
+        private string GenerateRandomString(int length)
+        {
+            const string validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            RandomNumberGenerator rng = RandomNumberGenerator.Create();
+            byte[] randomBytes = new byte[length];
+            rng.GetBytes(randomBytes);
+            StringBuilder result = new StringBuilder(length);
+            foreach (byte b in randomBytes)
+            {
+                result.Append(validChars[b % validChars.Length]);
+            }
+            return result.ToString();
+        }
+
         /*-----------------------------SERVER---------------------------------------------------------*/
 
         private void btnListen_Click(object sender, EventArgs e)
         {
+            string Username = txtUSN.Text;
+            string Password = txtPSW.Text;
+            txtPSW.Enabled = false;
+            txtUSN.Enabled = false;
+            string Id = ComputeSHA256Hash(Username + Password);
+            var data = new Data
+            {
+                id = Id,
+                ipaddress = GetLocalIPv4(),
+            };
+            firebase.Set("Information/" + Id, data);
+
             tcpListener = new TcpListener(IPAddress.Any, 5000);
             listenThread = new Thread(new ThreadStart(ListenForClients));
             listenThread.Start();
@@ -211,7 +287,11 @@ namespace app
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
-            client = new TcpClient("127.0.0.1", 5000);
+            string Id = ComputeSHA256Hash(txtUSN.Text + txtPSW.Text);
+            FirebaseResponse res = firebase.Get("Information/" + Id);
+            Data obj = res.ResultAs<Data>();
+
+            client = new TcpClient(obj.ipaddress, 5000);
             serverStream = client.GetStream();
             KeyPreview = false;
             captureThread = new Thread(new ThreadStart(CaptureScreen));
@@ -294,14 +374,35 @@ namespace app
             }
         }
 
-       /* [DllImport("user32.dll")]
-        private static extern bool SetCursorPos(int X, int Y);
+        private void btnRandom_Click(object sender, EventArgs e)
+        {
+            string prev = txtPSW.Text;
+            string curr = GenerateRandomString(6);
+            txtPSW.Text = curr;
+            string Id = ComputeSHA256Hash(txtUSN.Text + prev);
+            firebase.Delete("Information/" + Id);
+            Id = ComputeSHA256Hash(txtUSN.Text + curr);
+            var data = new Data
+            {
+                id = Id,
+                ipaddress = GetLocalIPv4(),
+            };
+            firebase.Set("Information/" + Id, data);
+        }
 
-        [DllImport("user32.dll")]
-        private static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
+        private void App_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            firebase.Delete("Information/" + ComputeSHA256Hash(txtUSN.Text + txtPSW.Text));
+        }
 
-        private const int MOUSEEVENTF_LEFTDOWN = 0x02;
-        private const int MOUSEEVENTF_LEFTUP = 0x04;*/
+        /* [DllImport("user32.dll")]
+         private static extern bool SetCursorPos(int X, int Y);
+
+         [DllImport("user32.dll")]
+         private static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
+
+         private const int MOUSEEVENTF_LEFTDOWN = 0x02;
+         private const int MOUSEEVENTF_LEFTUP = 0x04;*/
 
     }
 }
