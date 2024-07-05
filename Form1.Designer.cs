@@ -38,25 +38,24 @@
             this.txtUSN = new System.Windows.Forms.TextBox();
             this.btnConnect = new System.Windows.Forms.Button();
             this.btnListen = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btnSend = new System.Windows.Forms.Button();
             this.listBoxClients = new System.Windows.Forms.ListBox();
+            this.btnMenu = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDisplay)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBoxDisplay
             // 
-            this.pictureBoxDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxDisplay.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxDisplay.Location = new System.Drawing.Point(3, 0);
             this.pictureBoxDisplay.Name = "pictureBoxDisplay";
-            this.pictureBoxDisplay.Size = new System.Drawing.Size(924, 571);
+            this.pictureBoxDisplay.Size = new System.Drawing.Size(1922, 1082);
             this.pictureBoxDisplay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxDisplay.TabIndex = 0;
             this.pictureBoxDisplay.TabStop = false;
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.Aquamarine;
             this.groupBox1.Controls.Add(this.btnRandom);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
@@ -64,12 +63,10 @@
             this.groupBox1.Controls.Add(this.txtUSN);
             this.groupBox1.Controls.Add(this.btnConnect);
             this.groupBox1.Controls.Add(this.btnListen);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.btnSend);
             this.groupBox1.Controls.Add(this.listBoxClients);
-            this.groupBox1.Location = new System.Drawing.Point(612, 0);
+            this.groupBox1.Location = new System.Drawing.Point(707, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(304, 400);
+            this.groupBox1.Size = new System.Drawing.Size(246, 304);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
@@ -87,7 +84,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 72);
+            this.label2.Location = new System.Drawing.Point(20, 69);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 16);
             this.label2.TabIndex = 8;
@@ -96,7 +93,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 20);
+            this.label1.Location = new System.Drawing.Point(21, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 16);
             this.label1.TabIndex = 7;
@@ -138,44 +135,39 @@
             this.btnListen.UseVisualStyleBackColor = true;
             this.btnListen.Click += new System.EventHandler(this.btnListen_Click);
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(6, 312);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(292, 40);
-            this.textBox1.TabIndex = 2;
-            // 
-            // btnSend
-            // 
-            this.btnSend.Location = new System.Drawing.Point(223, 358);
-            this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(75, 36);
-            this.btnSend.TabIndex = 1;
-            this.btnSend.Text = "Send";
-            this.btnSend.UseVisualStyleBackColor = true;
-            this.btnSend.Click += new System.EventHandler(this.button1_Click);
-            // 
             // listBoxClients
             // 
             this.listBoxClients.FormattingEnabled = true;
             this.listBoxClients.ItemHeight = 16;
             this.listBoxClients.Location = new System.Drawing.Point(6, 181);
             this.listBoxClients.Name = "listBoxClients";
-            this.listBoxClients.Size = new System.Drawing.Size(292, 116);
+            this.listBoxClients.Size = new System.Drawing.Size(233, 116);
             this.listBoxClients.TabIndex = 0;
+            // 
+            // btnMenu
+            // 
+            this.btnMenu.Image = ((System.Drawing.Image)(resources.GetObject("btnMenu.Image")));
+            this.btnMenu.Location = new System.Drawing.Point(883, 303);
+            this.btnMenu.Name = "btnMenu";
+            this.btnMenu.Size = new System.Drawing.Size(70, 30);
+            this.btnMenu.TabIndex = 10;
+            this.btnMenu.UseVisualStyleBackColor = true;
+            this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
             // 
             // App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(924, 571);
+            this.ClientSize = new System.Drawing.Size(950, 739);
+            this.Controls.Add(this.btnMenu);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBoxDisplay);
             this.Name = "App";
+            this.ShowIcon = false;
             this.Text = "App";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.App_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Click += new System.EventHandler(this.Form1_Click);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDisplay)).EndInit();
@@ -189,8 +181,6 @@
 
         private System.Windows.Forms.PictureBox pictureBoxDisplay;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.Button btnConnect;
         private System.Windows.Forms.Button btnListen;
         private System.Windows.Forms.ListBox listBoxClients;
@@ -199,6 +189,7 @@
         private System.Windows.Forms.TextBox txtPSW;
         private System.Windows.Forms.TextBox txtUSN;
         private System.Windows.Forms.Button btnRandom;
+        private System.Windows.Forms.Button btnMenu;
     }
 }
 

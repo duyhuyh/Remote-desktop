@@ -7,10 +7,13 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Reflection.Emit;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
+using System.Runtime.Remoting.Messaging;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
@@ -21,12 +24,13 @@ using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp.Response;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
 
 namespace app
 {
     public partial class App : Form
     {
-
+        ChatForm chatForm;
         /*for firebase*/
 
         IFirebaseConfig config = new FirebaseConfig
@@ -45,6 +49,9 @@ namespace app
         private List<TcpClient> clients = new List<TcpClient>();
         private bool isMaxDisplay = false;
 
+        private Point initlMousePos;
+        private bool isDrag = false;
+
         /*--------------------------------------------------------*/
 
         /*for client*/
@@ -60,7 +67,14 @@ namespace app
         public App()
         {
             InitializeComponent();
+            CheckForIllegalCrossThreadCalls = false;
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnMenu.Anchor =  AnchorStyles.Right;
+            groupBox1.Click += GroupBox_Click;
+            pictureBoxDisplay.Click += Form1_Click;
+            pictureBoxDisplay.MouseClick += Form1_MouseClick;
+            pictureBoxDisplay.MouseDoubleClick += Form1_DoubleClick;
+            pictureBoxDisplay.MouseWheel += Form1_MouseWheel;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -68,10 +82,6 @@ namespace app
             firebase = new FireSharp.FirebaseClient(config);
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private string ComputeSHA256Hash(string input)
         {
@@ -118,40 +128,121 @@ namespace app
             return result.ToString();
         }
 
+        private bool checkFormOpen(string name)
+        {
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Text == name)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         /*-----------------------------SERVER---------------------------------------------------------*/
+
+        private void GroupBox_Click(object sender, EventArgs e) 
+        {
+            this.KeyPreview = false;
+        }
+
+        private void Form1_Click(object sender, EventArgs e)
+        {
+            this.KeyPreview = true;
+        }
+
+        private void Form1_MouseWheel(object sender, MouseEventArgs e)
+        {
+            Point scrollPosition = e.Location;
+            int deltaScroll = e.Delta;
+            string cmd;
+
+            if (deltaScroll > 0)
+            {
+                cmd = $"SCROLL_UP:{scrollPosition.X}:{scrollPosition.Y}";
+            }
+            else
+            {
+                cmd = $"SCROLL_DOWN:{scrollPosition.X}:{scrollPosition.Y}";
+            }
+            SendCommandToClient(cmd);
+        }
+
+        private void Form1_DoubleClick(object sender, MouseEventArgs e)
+        {
+            Point clickPosition = e.Location;
+            string cmd = $"DOU_CLICK:{clickPosition.X}:{clickPosition.Y}";
+            SendCommandToClient(cmd);
+        }
+
+        private void Form1_MouseClick(object sender, MouseEventArgs e)
+        {
+            listBoxClients.Items.Add(Height + "=" + Width);
+            Point clickPosition = e.Location;
+            string cmd = $"MOUSE_CLICK:{clickPosition.X}:{clickPosition.Y}";
+            if (e.Button == MouseButtons.Left)
+            {
+                cmd += $":{MouseButtons.Left}";
+            }
+            else if (e.Button == MouseButtons.Middle)
+            {
+                cmd += $":{MouseButtons.Middle}";
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                cmd += $":{MouseButtons.Right}";
+            }
+          /*  listBoxClients.Items.Add(cmd);*/
+            SendCommandToClient(cmd);
+        }
 
         private void btnListen_Click(object sender, EventArgs e)
         {
             if (btnListen.Text == "Listen") 
             {
-                btnListen.Text = "Stop";
-                isSerRun = true;
-                KeyPreview = true;
-
-                string Username = txtUSN.Text;
-                string Password = txtPSW.Text;
-                txtPSW.Enabled = false;
-                txtUSN.Enabled = false;
-                string Id = ComputeSHA256Hash(Username + Password);
-                var data = new Data
+                if (txtUSN.Text.Length == 0 || txtPSW.Text.Length == 0)
                 {
-                    id = Id,
-                    ipaddress = GetLocalIPv4(),
-                    port = 5000
-                };
-                firebase.Set("Information/" + Id, data);
-
-                tcpListener = new TcpListener(IPAddress.Any, 5000);
-                listenThread = new Thread(new ThreadStart(ListenForClients));
-                listenThread.Start();
-                listBoxClients.Items.Add("Server started...");
-                btnConnect.Enabled = false;
-                if (!isMaxDisplay)
+                    MessageBox.Show("Invalid username or password, please try again!");
+                    Disconnect();
+                }
+                else
                 {
-                    WindowState = FormWindowState.Maximized;
-                    FormBorderStyle = FormBorderStyle.FixedSingle;
+                    btnListen.Text = "Stop";
+                    isSerRun = true;
+                    KeyPreview = true;
+                    groupBox1.Visible = false;
 
-                    isMaxDisplay = true;
+                    string Username = txtUSN.Text;
+                    string Password = txtPSW.Text;
+                    txtPSW.Enabled = false;
+                    txtUSN.Enabled = false;
+                    string Id = ComputeSHA256Hash(Username + Password);
+                    var data = new Data
+                    {
+                        id = Id,
+                        ipaddress = GetLocalIPv4(),
+                        port = 5000
+                    };
+                    firebase.Set("Information/" + Id, data);
+                    chatForm = new ChatForm("server", GetLocalIPv4(), 5001);
+                    chatForm.Show();
+                    tcpListener = new TcpListener(IPAddress.Any, 5000);
+                    listenThread = new Thread(new ThreadStart(ListenForClients));
+                    listenThread.Start();
+                    listBoxClients.Items.Add("Server started...");
+                    btnConnect.Enabled = false;
+                    if (!isMaxDisplay)
+                    {
+                        
+                        pictureBoxDisplay.Height = 768;
+                        pictureBoxDisplay.Width = 1366;
+                        Width = 1386;
+                        Height = 807;
+                        FormBorderStyle = FormBorderStyle.FixedSingle;
+
+                        isMaxDisplay = true;
+                    }
                 }
             }
             else 
@@ -163,14 +254,22 @@ namespace app
         private void ListenForClients()
         {
             tcpListener.Start();
-            while (true)
+            while (isSerRun)
             {
-                TcpClient client = tcpListener.AcceptTcpClient();
-                clients.Add(client);
-                listBoxClients.Invoke(new Action(() => listBoxClients.Items.Add("Client connected...")));
-                
-                Thread clientThread = new Thread(new ParameterizedThreadStart(HandleClientComm));
-                clientThread.Start(client);
+                try 
+                {
+                    TcpClient client = tcpListener.AcceptTcpClient();
+                    clients.Add(client);
+                    listBoxClients.Invoke(new Action(() => listBoxClients.Items.Add("Client connected...")));
+
+                    Thread clientThread = new Thread(new ParameterizedThreadStart(HandleClientComm));
+                    clientThread.Start(client);
+                    SendCommandToClient("SUCCESS");
+                }
+                catch (Exception) 
+                {
+                    StopServer();
+                }
             }
         }
 
@@ -180,7 +279,7 @@ namespace app
             NetworkStream clientStream = tcpClient.GetStream();
             try 
             {
-                while (true)
+                while (isSerRun)
                 {
                     byte[] sizeBytes = new byte[4];
                     clientStream.Read(sizeBytes, 0, sizeBytes.Length);
@@ -195,7 +294,7 @@ namespace app
 
                     using (MemoryStream ms = new MemoryStream(data))
                     {
-                        pictureBoxDisplay.Image?.Dispose(); // Dispose previous image to release resources
+                        pictureBoxDisplay.Image?.Dispose();
                         pictureBoxDisplay.Image = new Bitmap(ms);
                     }
                 }
@@ -206,26 +305,26 @@ namespace app
             }
             finally
             {
-                // Clean up the client
                 tcpClient.Close();
                 clients.Remove(tcpClient);
                 tcpListener.Stop();
                 listenThread.Abort();
-
-                listBoxClients.Invoke(new Action(() => listBoxClients.Items.Clear()));
-                pictureBoxDisplay.Invoke(new Action(() =>
-                {
-                    pictureBoxDisplay.Image?.Dispose(); // Dispose previous image to release resources
-                    pictureBoxDisplay.Image = null; // Clear the PictureBox
-                }));
+                chatForm.StopListening();
+                chatForm.Close();
                 this.Invoke(new Action(() =>
                 {
                     if (clients.Count == 0)
                     {
+                        if (groupBox1.Visible == false)
+                            groupBox1.Visible = true;
+                        pictureBoxDisplay.Image?.Dispose();
+                        pictureBoxDisplay.Image = null;
+                        listBoxClients.Items.Clear();
+                        isSerRun = false;
+                        KeyPreview = false;
                         txtPSW.Enabled = true;
                         txtUSN.Enabled = true;
                         btnConnect.Enabled = true;
-                        KeyPreview = false;
                         btnListen.Text = "Listen";
                     }
                 }));
@@ -235,6 +334,9 @@ namespace app
 
         private void StopServer()
         {
+            chatForm.StopListening();
+            chatForm.Close();
+            SendCommandToClient("CHAT:SERVER IS STOP!");
             if (tcpListener != null)
             {
                 tcpListener.Stop();
@@ -251,18 +353,19 @@ namespace app
             {
                 listenThread.Abort();
             }
-
-            // Update the UI to reflect that the server has stopped
+            listBoxClients.Invoke(new Action(() => listBoxClients.Items.Clear()));
             this.Invoke(new Action(() =>
             {
+                if (groupBox1.Visible == false)
+                    groupBox1.Visible = true;
                 isSerRun = false;
                 KeyPreview = false;
                 txtPSW.Enabled = true;
                 txtUSN.Enabled = true;
                 btnConnect.Enabled = true;
                 btnListen.Text = "Listen";
-                pictureBoxDisplay.Image?.Dispose(); // Dispose previous image to release resources
-                pictureBoxDisplay.Image = null; // Clear the PictureBox
+                pictureBoxDisplay.Image?.Dispose();
+                pictureBoxDisplay.Image = null; 
             }));
         }
 
@@ -362,7 +465,6 @@ namespace app
         /*---------------------------------------------------------------------------------------------*/
 
         /*-----------------------------CLIENT----------------------------------------------------------*/
-
         private void btnConnect_Click(object sender, EventArgs e)
         {
             if (btnConnect.Text == "Connect")
@@ -380,6 +482,8 @@ namespace app
                 }
                 else 
                 {
+                    chatForm = new ChatForm("client", obj.ipaddress, obj.port + 1);
+                    chatForm.Show();
                     client = new TcpClient(obj.ipaddress, obj.port);
                     serverStream = client.GetStream();
 
@@ -471,26 +575,79 @@ namespace app
                         Console.WriteLine(commandParts[1]);
                     }
                     break;
-/*                case "MOVE_MOUSE":
+                case "MOUSE_CLICK":
                     int x = int.Parse(commandParts[1]);
                     int y = int.Parse(commandParts[2]);
                     SetCursorPos(x, y);
-                    break;
-                case "CLICK_MOUSE":
-                    if (commandParts[1] == "LEFT")
+                    if (commandParts[3] == MouseButtons.Left.ToString())
                     {
                         mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
                     }
+                    else if (commandParts[3] == MouseButtons.Right.ToString())
+                    {
+                        mouse_event(MOUSEEVENTF_RIGHTDOWN | MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
+                    }
+                    else if (commandParts[3] == MouseButtons.Middle.ToString())
+                    {
+                        mouse_event(MOUSEEVENTF_MIDDLEDOWN | MOUSEEVENTF_MIDDLEUP, 0, 0, 0, 0);
+                    }
                     break;
-                case "SEND_KEYSTROKE":
-                    char key = commandParts[1][0];
-                    SendKeys.SendWait(key.ToString());
-                    break;*/
+                case "DOU_CLICK":
+                    int X = int.Parse(commandParts[1]);
+                    int Y = int.Parse(commandParts[2]);
+                    SetCursorPos(X, Y);
+                    mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP | MOUSEEVENTF_LEFTDBLCLK, 0, 0, 0, 0);
+                    break;
+                case "SCROLL_UP":
+                    int scrollUpX = int.Parse(commandParts[1]);
+                    int scrollUpY = int.Parse(commandParts[2]);
+                    SetCursorPos(scrollUpX, scrollUpY);
+                    mouse_event(MOUSEEVENTF_WHEEL, 0, 0, 120, 0);
+                    break;
+                case "SCROLL_DOWN":
+                    int scrollDownX = int.Parse(commandParts[1]);
+                    int scrollDownY = int.Parse(commandParts[2]);
+                    SetCursorPos(scrollDownX, scrollDownY);
+                    mouse_event(MOUSEEVENTF_WHEEL, 0, 0, -120, 0);
+                    break;
+                case "CHAT":
+                    listBoxClients.Invoke(new Action(() => listBoxClients.Items.Add("Server is stop!")));
+                    if (checkFormOpen("ChatForm"))
+                    {
+                        chatForm.StopListening();
+                        chatForm.Close();
+                    }
+                    break;
+                case "SUCCESS":
+                    listBoxClients.Invoke(new Action(() => listBoxClients.Items.Add("Connect succesfull!")));
+                    break;
             }
         }
 
+        [DllImport("user32.dll")]
+        private static extern bool SetCursorPos(int X, int Y);
+
+        [DllImport("user32.dll")]
+        private static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
+
+        private const int MOUSEEVENTF_LEFTDOWN = 0x0002;
+        private const int MOUSEEVENTF_LEFTUP = 0x0004;
+        private const int MOUSEEVENTF_LEFTDBLCLK = 0x0008;
+        private const int MOUSEEVENTF_RIGHTDOWN = 0x0008;
+        private const int MOUSEEVENTF_RIGHTUP = 0x0010;
+        private const int MOUSEEVENTF_MIDDLEDOWN = 0x0020;
+        private const int MOUSEEVENTF_MIDDLEUP = 0x0040;
+        private const int MOUSEEVENTF_WHEEL = 0x0800;
+        private const int MOUSEEVENTF_MOVE = 0x0001;
+
         private void Disconnect()
         {
+            if (checkFormOpen("ChatForm"))
+            {
+                chatForm.StopListening();
+                chatForm.Close();
+            }
+
             isCliRun = false;
 
             if (serverStream != null)
@@ -512,10 +669,9 @@ namespace app
             {
                 commandThread.Abort();
             }
-
+            listBoxClients.Invoke(new Action(() => listBoxClients.Items.Clear()));
             this.Invoke(new Action(() =>
             {
-                /*listBoxStatus.Items.Add("Client disconnected.");*/
                 KeyPreview = false;
                 btnConnect.Text = "Connect";
                 btnListen.Enabled = true;
@@ -543,8 +699,15 @@ namespace app
             firebase.Delete("Information/" + ComputeSHA256Hash(txtUSN.Text + txtPSW.Text));
             if (isSerRun) StopServer();
             if (isCliRun) Disconnect();
+            Application.Exit();
         }
 
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            if (groupBox1.Visible == false)
+                groupBox1.Visible = true;
+            else groupBox1.Visible = false;
+        }
     }
 }
 
