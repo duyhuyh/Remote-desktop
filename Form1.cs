@@ -545,6 +545,10 @@ namespace app
             if (isCliRun) Disconnect();
         }
 
+        private void listBoxClients_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

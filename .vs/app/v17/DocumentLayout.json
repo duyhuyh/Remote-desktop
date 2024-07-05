@@ -1,17 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\THmang_C#\\DoAn_LTM\\app\\",
+  "WorkspaceRootPath": "C:\\Users\\ADMIN\\source\\repos\\Remote-desktop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{409891C3-571D-461B-A239-BEF8A1C4B037}|app.csproj|d:\\thmang_c#\\doan_ltm\\app\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{409891C3-571D-461B-A239-BEF8A1C4B037}|app.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{409891C3-571D-461B-A239-BEF8A1C4B037}|app.csproj|D:\\THmang_C#\\DoAn_LTM\\app\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{409891C3-571D-461B-A239-BEF8A1C4B037}|app.csproj|c:\\users\\admin\\source\\repos\\remote-desktop\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{409891C3-571D-461B-A239-BEF8A1C4B037}|app.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{409891C3-571D-461B-A239-BEF8A1C4B037}|app.csproj|d:\\thmang_c#\\doan_ltm\\app\\data.cs||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "AbsoluteMoniker": "D:0:0:{409891C3-571D-461B-A239-BEF8A1C4B037}|app.csproj|C:\\Users\\ADMIN\\source\\repos\\Remote-desktop\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{409891C3-571D-461B-A239-BEF8A1C4B037}|app.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{409891C3-571D-461B-A239-BEF8A1C4B037}|app.csproj|C:\\Users\\ADMIN\\source\\repos\\Remote-desktop\\data.cs||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{409891C3-571D-461B-A239-BEF8A1C4B037}|app.csproj|solutionrelative:data.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,37 +34,36 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Data.cs",
-              "DocumentMoniker": "D:\\THmang_C#\\DoAn_LTM\\app\\Data.cs",
-              "RelativeDocumentMoniker": "Data.cs",
-              "ToolTip": "D:\\THmang_C#\\DoAn_LTM\\app\\Data.cs",
-              "RelativeToolTip": "Data.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-04T20:19:12.55Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Form1.cs",
-              "DocumentMoniker": "D:\\THmang_C#\\DoAn_LTM\\app\\Form1.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\Remote-desktop\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "D:\\THmang_C#\\DoAn_LTM\\app\\Form1.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\Remote-desktop\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AQIAALQBAAAAAAAAAAAiwAACAAAmAAAA",
+              "ViewState": "AQIAABYCAAAAAAAAAAAvwCUCAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-04T19:42:08.22Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "Data.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\Remote-desktop\\Data.cs",
+              "RelativeDocumentMoniker": "Data.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\Remote-desktop\\Data.cs",
+              "RelativeToolTip": "Data.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-04T20:19:12.55Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "D:\\THmang_C#\\DoAn_LTM\\app\\Form1.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\source\\repos\\Remote-desktop\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "D:\\THmang_C#\\DoAn_LTM\\app\\Form1.cs [Design]",
+              "ToolTip": "C:\\Users\\ADMIN\\source\\repos\\Remote-desktop\\Form1.cs [Design]",
               "RelativeToolTip": "Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-30T20:06:15.951Z",
