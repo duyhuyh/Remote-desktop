@@ -3,15 +3,15 @@
   "WorkspaceRootPath": "D:\\THmang_C#\\DoAn_LTM\\app\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{409891C3-571D-461B-A239-BEF8A1C4B037}|app.csproj|d:\\thmang_c#\\doan_ltm\\app\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{409891C3-571D-461B-A239-BEF8A1C4B037}|app.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{409891C3-571D-461B-A239-BEF8A1C4B037}|app.csproj|D:\\THmang_C#\\DoAn_LTM\\app\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{409891C3-571D-461B-A239-BEF8A1C4B037}|app.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{409891C3-571D-461B-A239-BEF8A1C4B037}|app.csproj|d:\\thmang_c#\\doan_ltm\\app\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{409891C3-571D-461B-A239-BEF8A1C4B037}|app.csproj|d:\\thmang_c#\\doan_ltm\\app\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{409891C3-571D-461B-A239-BEF8A1C4B037}|app.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{409891C3-571D-461B-A239-BEF8A1C4B037}|app.csproj|D:\\THmang_C#\\DoAn_LTM\\app\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{409891C3-571D-461B-A239-BEF8A1C4B037}|app.csproj|solutionrelative:form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -26,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,20 +38,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Form1.cs",
               "DocumentMoniker": "D:\\THmang_C#\\DoAn_LTM\\app\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "D:\\THmang_C#\\DoAn_LTM\\app\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AQIAAO0AAAAAAAAAAAAiwMIAAAANAAAA",
+              "ViewState": "AQIAAC4CAAAAAAAAAAAnwOwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-04T19:42:08.22Z",
+              "WhenOpened": "2024-07-05T22:19:04.55Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "D:\\THmang_C#\\DoAn_LTM\\app\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
@@ -69,7 +69,7 @@
               "RelativeDocumentMoniker": "Form2.cs",
               "ToolTip": "D:\\THmang_C#\\DoAn_LTM\\app\\Form2.cs",
               "RelativeToolTip": "Form2.cs",
-              "ViewState": "AQIAAJ4AAAAAAAAAAAAnwH0AAAANAAAA",
+              "ViewState": "AQIAABQAAAAAAAAAAAAAwH0AAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-05T13:42:12.091Z",
               "EditorCaption": ""

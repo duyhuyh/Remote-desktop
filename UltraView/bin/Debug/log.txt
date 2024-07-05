@@ -1,0 +1,95 @@
+﻿ 
+*LOAD*Friday, July 5, 2024 10:42:30 PM
+OpenChatFormFriday, July 5, 2024 10:42:40 PM
+Open connect Port: 1999 10:42 PM
+OpenFormRemote Friday, July 5, 2024 10:42:41 PM
+cbxMouse_CheckFriday, July 5, 2024 10:43:15 PM
+cbxKeyBoard_CheckFriday, July 5, 2024 10:43:17 PM
+ 
+*LOAD*Friday, July 5, 2024 10:43:47 PM
+btnUpdateClickFriday, July 5, 2024 10:43:53 PM
+btnAboutClickFriday, July 5, 2024 10:44:20 PM
+btnHelpClickFriday, July 5, 2024 10:44:30 PM
+btnExitClickFriday, July 5, 2024 10:44:40 PM
+ 
+*LOAD*Friday, July 5, 2024 10:44:46 PM
+OpenChatFormFriday, July 5, 2024 10:45:01 PM
+Open connect Port: 1999 10:45 PM
+OpenFormRemote Friday, July 5, 2024 10:45:01 PM
+FormChatCloseFriday, July 5, 2024 10:45:21 PM
+ 
+*LOAD*Friday, July 5, 2024 10:45:27 PM
+btnUpdateClickFriday, July 5, 2024 10:45:32 PM
+ 
+*LOAD*Saturday, July 6, 2024 12:53:47 AM
+ 
+*LOAD*Saturday, July 6, 2024 12:56:35 AM
+ 
+*LOAD*Saturday, July 6, 2024 1:22:25 AM
+OpenChatFormSaturday, July 6, 2024 1:22:39 AM
+Open connect Port: 1999 1:22 AM
+OpenFormRemote Saturday, July 6, 2024 1:22:39 AM
+ 
+*LOAD*Saturday, July 6, 2024 1:32:58 AM
+ 
+*LOAD*Saturday, July 6, 2024 1:35:37 AM
+ 
+*LOAD*Saturday, July 6, 2024 1:37:38 AM
+ 
+*LOAD*Saturday, July 6, 2024 1:47:56 AM
+btnHelpClickSaturday, July 6, 2024 1:48:04 AM
+btnAboutClickSaturday, July 6, 2024 1:48:39 AM
+btnUpdateClickSaturday, July 6, 2024 1:49:14 AM
+btnUpdateClickSaturday, July 6, 2024 1:49:45 AM
+ 
+*LOAD*Saturday, July 6, 2024 10:15:14 AM
+OpenChatFormSaturday, July 6, 2024 10:15:22 AM
+Open connect Port: 1999 10:15 AM
+OpenFormRemote Saturday, July 6, 2024 10:15:22 AM
+ 
+*LOAD*Saturday, July 6, 2024 10:18:18 AM
+OpenChatFormSaturday, July 6, 2024 10:18:23 AM
+Open connect Port: 1999 10:18 AM
+OpenFormRemote Saturday, July 6, 2024 10:18:23 AM
+cbxMouse_CheckSaturday, July 6, 2024 10:20:05 AM
+cbxKeyBoard_CheckSaturday, July 6, 2024 10:20:07 AM
+btnHelpClickSaturday, July 6, 2024 10:21:38 AM
+btnAboutClickSaturday, July 6, 2024 10:21:44 AM
+btnUpdateClickSaturday, July 6, 2024 10:21:54 AM
+ 
+*LOAD*Saturday, July 6, 2024 10:25:53 AM
+OpenChatFormSaturday, July 6, 2024 10:26:45 AM
+Open connect Port: 1999 10:26 AM
+OpenFormRemote Saturday, July 6, 2024 10:26:45 AM
+cbxMouse_CheckSaturday, July 6, 2024 10:27:29 AM
+cbxKeyBoard_CheckSaturday, July 6, 2024 10:27:30 AM
+btnHelpClickSaturday, July 6, 2024 10:30:11 AM
+btnAboutClickSaturday, July 6, 2024 10:30:16 AM
+btnUpdateClickSaturday, July 6, 2024 10:30:31 AM
+ 
+*LOAD*Saturday, July 6, 2024 11:18:10 AM
+OpenChatFormSaturday, July 6, 2024 11:18:15 AM
+Open connect Port: 1999 11:18 AM
+OpenFormRemote Saturday, July 6, 2024 11:18:15 AM
+cbxKeyBoard_UnCheckSaturday, July 6, 2024 11:19:06 AM
+cbxMouse_CheckSaturday, July 6, 2024 11:19:07 AM
+btnHelpClickSaturday, July 6, 2024 11:20:19 AM
+btnAboutClickSaturday, July 6, 2024 11:20:25 AM
+btnUpdateClickSaturday, July 6, 2024 11:21:16 AM
+ 
+*LOAD*Saturday, July 6, 2024 5:32:10 AM
+OpenChatFormSaturday, July 6, 2024 5:32:50 AM
+Open connect Port: 5500 5:32 AM
+OpenFormRemote Saturday, July 6, 2024 5:32:50 AM
+cbxMouse_CheckSaturday, July 6, 2024 5:32:58 AM
+cbxMouse_UnCheckSaturday, July 6, 2024 5:32:58 AM
+cbxMouse_CheckSaturday, July 6, 2024 5:33:00 AM
+cbxMouse_UnCheckSaturday, July 6, 2024 5:33:01 AM
+cbxMouse_CheckSaturday, July 6, 2024 5:33:02 AM
+cbxMouse_UnCheckSaturday, July 6, 2024 5:33:02 AM
+cbxMouse_CheckSaturday, July 6, 2024 5:33:03 AM
+cbxMouse_UnCheckSaturday, July 6, 2024 5:33:03 AM
+cbxKeyBoard_UnCheckSaturday, July 6, 2024 5:33:05 AM
+cbxKeyBoard_UnCheckSaturday, July 6, 2024 5:33:05 AM
+ 
+*LOAD*Saturday, July 6, 2024 5:33:15 AM
