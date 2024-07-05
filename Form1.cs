@@ -26,6 +26,15 @@ namespace app
 {
     public partial class App : Form
     {
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint dwData, int dwExtraInfo);
+
+        private const uint MOUSEEVENTF_LEFTDOWN = 0x02;
+        private const uint MOUSEEVENTF_LEFTUP = 0x04;
+        private const uint MOUSEEVENTF_RIGHTDOWN = 0x08;
+        private const uint MOUSEEVENTF_RIGHTUP = 0x10;
+        private const uint MOUSEEVENTF_MIDDLEDOWN = 0x20;
+        private const uint MOUSEEVENTF_MIDDLEUP = 0x40;
 
         /*for firebase*/
 
@@ -61,6 +70,7 @@ namespace app
         {
             InitializeComponent();
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            this.MouseDown += new MouseEventHandler(Form1_MouseDown);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -357,6 +367,26 @@ namespace app
             }
             t = "";
         }
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            string command = string.Empty;
+            switch (e.Button)
+            {
+                case MouseButtons.Left:
+                    command = "MOUSE_CLICK:LEFT";
+                    break;
+                case MouseButtons.Right:
+                    command = "MOUSE_CLICK:RIGHT";
+                    break;
+                case MouseButtons.Middle:
+                    command = "MOUSE_CLICK:MIDDLE";
+                    break;
+            }
+            if (!string.IsNullOrEmpty(command))
+            {
+                SendCommandToClient(command);
+            }
+        }
 
 
         /*---------------------------------------------------------------------------------------------*/
@@ -471,24 +501,26 @@ namespace app
                         Console.WriteLine(commandParts[1]);
                     }
                     break;
-/*                case "MOVE_MOUSE":
-                    int x = int.Parse(commandParts[1]);
-                    int y = int.Parse(commandParts[2]);
-                    SetCursorPos(x, y);
+                case "MOUSE_CLICK":
+                    HandleMouseClick(commandParts[1]);
                     break;
-                case "CLICK_MOUSE":
-                    if (commandParts[1] == "LEFT")
-                    {
-                        mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
-                    }
-                    break;
-                case "SEND_KEYSTROKE":
-                    char key = commandParts[1][0];
-                    SendKeys.SendWait(key.ToString());
-                    break;*/
             }
         }
-
+        private void HandleMouseClick(string button)
+        {
+            switch (button)
+            {
+                case "LEFT":
+                    mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+                    break;
+                case "RIGHT":
+                    mouse_event(MOUSEEVENTF_RIGHTDOWN | MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
+                    break;
+                case "MIDDLE":
+                    mouse_event(MOUSEEVENTF_MIDDLEDOWN | MOUSEEVENTF_MIDDLEUP, 0, 0, 0, 0);
+                    break;
+            }
+        }
         private void Disconnect()
         {
             isCliRun = false;
