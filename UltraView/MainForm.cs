@@ -358,7 +358,7 @@ namespace UltraView
 
         #endregion
 
-        #region Tuan_Menu_and_Ghilog
+        #region Menu_and_Ghilog
 
 
 
