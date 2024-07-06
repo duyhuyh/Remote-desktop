@@ -1,0 +1,255 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "G:\\doanLTM\\Remote-desktop\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{344280B5-11A7-43D5-9043-611ACDC7A915}|UltraView\\UltraView.csproj|g:\\doanltm\\remote-desktop\\ultraview\\properties\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{344280B5-11A7-43D5-9043-611ACDC7A915}|UltraView\\UltraView.csproj|solutionrelative:ultraview\\properties\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{344280B5-11A7-43D5-9043-611ACDC7A915}|UltraView\\UltraView.csproj|g:\\doanltm\\remote-desktop\\ultraview\\resources\\imagebt\\connectbt.jpg||{58961B49-13E0-48C0-9258-13CBC4D40279}",
+      "RelativeMoniker": "D:0:0:{344280B5-11A7-43D5-9043-611ACDC7A915}|UltraView\\UltraView.csproj|solutionrelative:ultraview\\resources\\imagebt\\connectbt.jpg||{58961B49-13E0-48C0-9258-13CBC4D40279}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{344280B5-11A7-43D5-9043-611ACDC7A915}|UltraView\\UltraView.csproj|g:\\doanltm\\remote-desktop\\ultraview\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{344280B5-11A7-43D5-9043-611ACDC7A915}|UltraView\\UltraView.csproj|solutionrelative:ultraview\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|UltraView||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{344280B5-11A7-43D5-9043-611ACDC7A915}|UltraView\\UltraView.csproj|g:\\doanltm\\remote-desktop\\ultraview\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{344280B5-11A7-43D5-9043-611ACDC7A915}|UltraView\\UltraView.csproj|solutionrelative:ultraview\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{344280B5-11A7-43D5-9043-611ACDC7A915}|UltraView\\UltraView.csproj|g:\\doanltm\\remote-desktop\\ultraview\\chatform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{344280B5-11A7-43D5-9043-611ACDC7A915}|UltraView\\UltraView.csproj|solutionrelative:ultraview\\chatform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{344280B5-11A7-43D5-9043-611ACDC7A915}|UltraView\\UltraView.csproj|g:\\doanltm\\remote-desktop\\ultraview\\chatform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{344280B5-11A7-43D5-9043-611ACDC7A915}|UltraView\\UltraView.csproj|solutionrelative:ultraview\\chatform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{344280B5-11A7-43D5-9043-611ACDC7A915}|UltraView\\UltraView.csproj|g:\\doanltm\\remote-desktop\\ultraview\\remotescreenform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{344280B5-11A7-43D5-9043-611ACDC7A915}|UltraView\\UltraView.csproj|solutionrelative:ultraview\\remotescreenform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{344280B5-11A7-43D5-9043-611ACDC7A915}|UltraView\\UltraView.csproj|g:\\doanltm\\remote-desktop\\ultraview\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{344280B5-11A7-43D5-9043-611ACDC7A915}|UltraView\\UltraView.csproj|solutionrelative:ultraview\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{344280B5-11A7-43D5-9043-611ACDC7A915}|UltraView\\UltraView.csproj|g:\\doanltm\\remote-desktop\\ultraview\\remotescreenform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{344280B5-11A7-43D5-9043-611ACDC7A915}|UltraView\\UltraView.csproj|solutionrelative:ultraview\\remotescreenform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{344280B5-11A7-43D5-9043-611ACDC7A915}|UltraView\\UltraView.csproj|g:\\doanltm\\remote-desktop\\ultraview\\update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{344280B5-11A7-43D5-9043-611ACDC7A915}|UltraView\\UltraView.csproj|solutionrelative:ultraview\\update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{344280B5-11A7-43D5-9043-611ACDC7A915}|UltraView\\UltraView.csproj|g:\\doanltm\\remote-desktop\\ultraview\\update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{344280B5-11A7-43D5-9043-611ACDC7A915}|UltraView\\UltraView.csproj|solutionrelative:ultraview\\update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{344280B5-11A7-43D5-9043-611ACDC7A915}|UltraView\\UltraView.csproj|g:\\doanltm\\remote-desktop\\ultraview\\properties\\resources.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
+      "RelativeMoniker": "D:0:0:{344280B5-11A7-43D5-9043-611ACDC7A915}|UltraView\\UltraView.csproj|solutionrelative:ultraview\\properties\\resources.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 13,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ConnectBT.jpg",
+              "DocumentMoniker": "G:\\doanLTM\\Remote-desktop\\UltraView\\Resources\\ImageBT\\ConnectBT.jpg",
+              "RelativeDocumentMoniker": "UltraView\\Resources\\ImageBT\\ConnectBT.jpg",
+              "ToolTip": "G:\\doanLTM\\Remote-desktop\\UltraView\\Resources\\ImageBT\\ConnectBT.jpg",
+              "RelativeToolTip": "UltraView\\Resources\\ImageBT\\ConnectBT.jpg",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2024-07-06T06:31:55.178Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MainForm.cs [Design]",
+              "DocumentMoniker": "G:\\doanLTM\\Remote-desktop\\UltraView\\MainForm.cs",
+              "RelativeDocumentMoniker": "UltraView\\MainForm.cs",
+              "ToolTip": "G:\\doanLTM\\Remote-desktop\\UltraView\\MainForm.cs [Design]",
+              "RelativeToolTip": "UltraView\\MainForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-06T06:31:43.904Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "G:\\doanLTM\\Remote-desktop\\UltraView\\Program.cs",
+              "RelativeDocumentMoniker": "UltraView\\Program.cs",
+              "ToolTip": "G:\\doanLTM\\Remote-desktop\\UltraView\\Program.cs",
+              "RelativeToolTip": "UltraView\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-06T06:29:33.375Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "RemoteScreenForm.cs [Design]",
+              "DocumentMoniker": "G:\\doanLTM\\Remote-desktop\\UltraView\\RemoteScreenForm.cs",
+              "RelativeDocumentMoniker": "UltraView\\RemoteScreenForm.cs",
+              "ToolTip": "G:\\doanLTM\\Remote-desktop\\UltraView\\RemoteScreenForm.cs [Design]",
+              "RelativeToolTip": "UltraView\\RemoteScreenForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-06T06:28:34.01Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Update.cs [Design]",
+              "DocumentMoniker": "G:\\doanLTM\\Remote-desktop\\UltraView\\Update.cs",
+              "RelativeDocumentMoniker": "UltraView\\Update.cs",
+              "ToolTip": "G:\\doanLTM\\Remote-desktop\\UltraView\\Update.cs [Design]",
+              "RelativeToolTip": "UltraView\\Update.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-06T06:28:19.479Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RemoteScreenForm.cs",
+              "DocumentMoniker": "G:\\doanLTM\\Remote-desktop\\UltraView\\RemoteScreenForm.cs",
+              "RelativeDocumentMoniker": "UltraView\\RemoteScreenForm.cs",
+              "ToolTip": "G:\\doanLTM\\Remote-desktop\\UltraView\\RemoteScreenForm.cs",
+              "RelativeToolTip": "UltraView\\RemoteScreenForm.cs",
+              "ViewState": "AQIAACgAAAAAAAAAAAAAAOEAAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-06T06:26:54.737Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainForm.cs",
+              "DocumentMoniker": "G:\\doanLTM\\Remote-desktop\\UltraView\\MainForm.cs",
+              "RelativeDocumentMoniker": "UltraView\\MainForm.cs",
+              "ToolTip": "G:\\doanLTM\\Remote-desktop\\UltraView\\MainForm.cs",
+              "RelativeToolTip": "UltraView\\MainForm.cs",
+              "ViewState": "AQIAAPgCAAAAAAAAAAAtwAUDAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-06T06:22:25.434Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Update.cs",
+              "DocumentMoniker": "G:\\doanLTM\\Remote-desktop\\UltraView\\Update.cs",
+              "RelativeDocumentMoniker": "UltraView\\Update.cs",
+              "ToolTip": "G:\\doanLTM\\Remote-desktop\\UltraView\\Update.cs",
+              "RelativeToolTip": "UltraView\\Update.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAAkwFoAAAA6AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-06T06:19:12.173Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ChatForm.cs",
+              "DocumentMoniker": "G:\\doanLTM\\Remote-desktop\\UltraView\\ChatForm.cs",
+              "RelativeDocumentMoniker": "UltraView\\ChatForm.cs",
+              "ToolTip": "G:\\doanLTM\\Remote-desktop\\UltraView\\ChatForm.cs",
+              "RelativeToolTip": "UltraView\\ChatForm.cs",
+              "ViewState": "AQIAALYAAAAAAAAAAAAAAJkAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-06T06:17:08.798Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ChatForm.cs [Design]",
+              "DocumentMoniker": "G:\\doanLTM\\Remote-desktop\\UltraView\\ChatForm.cs",
+              "RelativeDocumentMoniker": "UltraView\\ChatForm.cs",
+              "ToolTip": "G:\\doanLTM\\Remote-desktop\\UltraView\\ChatForm.cs [Design]",
+              "RelativeToolTip": "UltraView\\ChatForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-06T06:17:06.86Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UltraView",
+              "DocumentMoniker": "G:\\doanLTM\\Remote-desktop\\UltraView\\UltraView.csproj",
+              "RelativeDocumentMoniker": "UltraView\\UltraView.csproj",
+              "ToolTip": "G:\\doanLTM\\Remote-desktop\\UltraView\\UltraView.csproj",
+              "RelativeToolTip": "UltraView\\UltraView.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-07-06T06:16:41.391Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AssemblyInfo.cs",
+              "DocumentMoniker": "G:\\doanLTM\\Remote-desktop\\UltraView\\Properties\\AssemblyInfo.cs",
+              "RelativeDocumentMoniker": "UltraView\\Properties\\AssemblyInfo.cs",
+              "ToolTip": "G:\\doanLTM\\Remote-desktop\\UltraView\\Properties\\AssemblyInfo.cs*",
+              "RelativeToolTip": "UltraView\\Properties\\AssemblyInfo.cs*",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABcAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-06T06:15:55.667Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 201,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{4a8466fe-5a05-4f81-ad45-7d7c1316817e}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
