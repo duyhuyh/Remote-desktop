@@ -1,5 +1,4 @@
-﻿ 
-*LOAD*Friday, July 5, 2024 10:42:30 PM
+﻿ *LOAD*Friday, July 5, 2024 10:42:30 PM
 OpenChatFormFriday, July 5, 2024 10:42:40 PM
 Open connect Port: 1999 10:42 PM
 OpenFormRemote Friday, July 5, 2024 10:42:41 PM
