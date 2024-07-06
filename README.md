@@ -1,4 +1,4 @@
-<p>NT106.O22.ANTT Nhóm 11<\p>
+<p>NT106.O22.ANTT Nhóm 11</p>
 Trần Văn Chiến - 2250156
 Nguyễn Huỳnh Duy - 22520330
 Đặng Thị Minh Thư - 22521437
