@@ -49,7 +49,7 @@ namespace UltraView
             if (Directory.Exists(UltraViewLTTQ))
             {
                 //tạo file current.txt
-                StreamWriter st = new StreamWriter(current.txt);
+                StreamWriter st = new StreamWriter(currenttxt);
 
                 st.Close();
 
