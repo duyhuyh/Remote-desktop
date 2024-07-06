@@ -32,23 +32,23 @@ namespace UltraView
                 return InternetGetConnectedState(out desc, 0);
             }
         }
-        string UltraViewLTTQ = @"UltraViewLTTQ";                //tạo thư mục nguồn lưu tất cả chương trình và cập nhật
-        string updatetxt = @"UltraViewLTTQ\update.txt";    //tạo file.txt ghi mã hiệu bản cập nhật mới
-        string currenttxt = @"UltraViewLTTQ\current.txt";  //tạo file.txt ghi mã hiệu bản hiện tại đang dùng.
-        string apppath = @"UltraViewLTTQ";          //Tạo thư mục lưu chương trình sẽ giải nén của bạn.
-        string applink = "https://docs.google.com/uc?export=download&id=1SXmr8SJbetgtJL0Y1QbBH44SsOqoqGDF";
-        string cailink = "https://docs.google.com/uc?export=download&id=1IXrGlrHv3ZEMoh5bMAq-wI_LWHU8EEmM";
+        string UltraView = @"UltraView";                // create source folder to store all programs and updates
+        string updatetxt = @"UltraView\update.txt";    // create a .txt file to write new update version code
+        string currenttxt = @"UltraView\current.txt";  // create a .txt file to write current version code in use
+        string apppath = @"UltraView";          // Create folder to store your extracted program.
+        string AppLink = "";
+        string InstallLink = "";
 
 
-        string updatetxtlink = "https://docs.google.com/uc?export=download&id=1xN64qP6z4n6yKF-3ydilrXnw6RhGbMnt";
+        string updatetxtlink = "";
 
-        string cai1 = Application.StartupPath + @"\cai.exe"; //duong dan den file ơ thu muc cung với chương trình
-        string cai2 = @"UltraViewLTTQ\app\cai.exe";     //duong dan copy den thuc muc khoi dong
+        readonly string cai1 = Application.StartupPath + @"\cai.exe"; // file path in the same folder as the program
+        readonly string cai2 = @"UltraView\app\cai.exe";     // copy path to the startup folder
         private void Update_Load(object sender, EventArgs e)
         {
-            if (Directory.Exists(UltraViewLTTQ))
+            if (Directory.Exists(UltraView))
             {
-                //tạo file current.txt
+                // create current.txt file
                 StreamWriter st = new StreamWriter(currenttxt);
 
                 st.Close();
@@ -56,16 +56,16 @@ namespace UltraView
             }
             else
             {
-                Directory.CreateDirectory(UltraViewLTTQ);
+                Directory.CreateDirectory(UltraView);
 
 
             }
             //
 
-            // code kiểm tra kết nối mạng
+            // check internet connection
             if (InternetConnection.IsConnectedToInternet())
             {
-                //tai ve ma hieu moi
+                // download new update code
 
 
                 WebClient ud = new WebClient();
@@ -77,13 +77,13 @@ namespace UltraView
 
             }
             else
-                MessageBox.Show("Không thể kiểm tra bản cập nhật do chưa kết nối mạng");
+                MessageBox.Show("Unable to check for updates due to lack of internet connection");
         }
-        //tai ve hoàn tất file update.txt
+        // download completion of the update.txt file
         private void udcom(object sender, AsyncCompletedEventArgs e)
         {
 
-            //doc file này cho vào label 2
+            // read this file into label 2
             
             //StreamReader rd = new StreamReader(currenttxt);
             //label1.Text = rd.ReadLine();
@@ -91,19 +91,19 @@ namespace UltraView
             StreamReader st = new StreamReader(updatetxt);
             label2.Text = st.ReadLine();
             st.Close();
-            //thưc hien kiểm tra phiên bản de thong bao cap nhat
+            // check the version to notify for update
             if (label1.Text == label2.Text)
             {
-                //nếu bằng nhau thì không có bản cập nhật
-                MessageBox.Show("Không có bản cập nhật mới");
+                // if equal, there is no update
+                MessageBox.Show("No new update available");
             }
-            else //nếu không bằng nhau
+            else // if not equal
             {
 
-                //thong báo có bản cập nhật và phiên bản mới
-                DialogResult di = MessageBox.Show("Phiên bản cập nhật mới " + label2.Text + " Đã sẵng sàn cài đặt",
-                    "Bản cập nhật mới", MessageBoxButtons.YesNo);
-                if (di == DialogResult.Yes) //neu nhan yes thì cập nhật
+                // notify new update and new version
+                DialogResult di = MessageBox.Show("New update version " + label2.Text + " is ready to install",
+                    "New Update Available", MessageBoxButtons.YesNo);
+                if (di == DialogResult.Yes) // if yes is selected, update
                 {
                     Process myProcess = new Process();
 
@@ -111,7 +111,7 @@ namespace UltraView
                     {
                         // true is the default, but it is important not to set it to false 
                         myProcess.StartInfo.UseShellExecute = true;
-                        myProcess.StartInfo.FileName = applink;
+                        myProcess.StartInfo.FileName = AppLink;
                         myProcess.Start();
                     }
                     catch (Exception)

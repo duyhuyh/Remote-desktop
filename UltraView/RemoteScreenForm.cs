@@ -25,7 +25,7 @@ namespace UltraView
         private NetworkStream mainStream;
         private readonly Thread Listening;
         private readonly Thread GetImage;
-        private Size receivedImageSize;//xét xem có cần k
+        private Size receivedImageSize;
         private bool gotten = false;
         public RemoteScreenForm(int Port)
         {
@@ -33,7 +33,7 @@ namespace UltraView
             client = new TcpClient();
             Listening = new Thread(StartListening);
             GetImage = new Thread(ReceiveImage);
-            //MessageBox.Show("Open connection success!");
+
             InitializeComponent();
             this.ActiveControl = picShowScreen;
             Writelogfile("OpenFormRemote " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString());
@@ -97,7 +97,7 @@ namespace UltraView
                 }
                 catch { }               
             }
-            //Thêm để thoong báo khi bên client out
+            
             MessageBox.Show("Connection has been lost!");
         }
         protected override void OnLoad(EventArgs e)
@@ -105,7 +105,7 @@ namespace UltraView
             base.OnLoad(e);
             server = new TcpListener(IPAddress.Any, port);
             Listening.Start();
-            //Show size on statusbar
+            
             lbSize.Text = "\tSize: " + picShowScreen.Width + "x" + (picShowScreen.Height);
         }
         protected override void OnFormClosing(FormClosingEventArgs e)

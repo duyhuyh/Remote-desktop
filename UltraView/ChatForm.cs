@@ -17,31 +17,26 @@ namespace UltraView
 {
     public partial class ChatForm : Form
     {
-        //Chú ý: test trên visual& trên 1 máy sẽ không chạy được tính năng này đâu=> nên copy file debug của nó ra 2 cái rồi mở lên test
-        //Ý tưởng: 
-        //Loai 0: khi mở form này lên, nếu mở form này bằng btn OpenConnect bên main form thì sẽ là server, chờ kết nối từ phía client
-        //Loai 1:Nếu mở bằng btn Connect thì sẽ là client và lấy các chỉ số ip, port đã nhập sẵn truyền vô sài!
-        //Khai báo kết nối, có cả 2 cái
         TcpClient client;
         TcpListener server;
         private readonly Thread Listening;
         private readonly Thread GetText;
-        private int port; //đem cái port gửi hình +1 để ra cái port khác sài cho gọn đường
-        private byte loai;
+        private int port; //Port used to send image is different 
+        private byte type;
         private string ip;
-        public ChatForm(byte Loai, string IP, int Port) //loai form= 0 server, 1 client
+        public ChatForm(byte Type, string IP, int Port) //Type = 0 is server, 1 is client
         {
 
-            loai = Loai;
+            type = Type;
             port = Port;
             ip = IP;
-            if (loai == 0)//server
+            if (type == 0)//server
             {
                 client = new TcpClient();
                 Listening = new Thread(StartListening);
                 GetText = new Thread(ReceiveText);
             }
-            else //loai=1 , client
+            else //type=1 , client
             {
                 client = new TcpClient();
                 GetText = new Thread(ReceiveText);
@@ -51,13 +46,13 @@ namespace UltraView
         }
         protected override void OnLoad(EventArgs e)
         {
-            
+
             base.OnLoad(e);
-            if(loai==0)
+            if (type == 0)
             {
                 server = new TcpListener(IPAddress.Any, port);
                 Listening.Start();
-                
+
             }
             else
             {
@@ -71,7 +66,7 @@ namespace UltraView
                 }
             }
         }
-        //Bắt kết nối và ngắt kết nối
+        //Handle connection and disconnection
         private void StartListening()
         {
             try
@@ -108,7 +103,7 @@ namespace UltraView
             // MessageBox.Show("Disconnect success!");
         }
 
-        //Nhận tin nhắn
+        //Receive messages
         private NetworkStream istream;
         private void ReceiveText()
         {
@@ -139,10 +134,10 @@ namespace UltraView
             StopListening();
             Writelogfile("FormChatClose" + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString());
         }
-        
-        //Gửi tin nhắn
+
+        //Send messages
         private NetworkStream stream;
-        
+
         private void btnSend_Click_1(object sender, EventArgs e)
         {
             if (tbxMessage.Text != "")
@@ -150,24 +145,28 @@ namespace UltraView
                 try
                 {
                     sendText("MS:" + tbxMessage.Text);
+                    Console.WriteLine("Message sent successfully: MS:" + tbxMessage.Text); // Logging message sent
                 }
                 catch
                 {
-                    tbxShowMessage.Text += "\nTin nhắn không gửi được!";
+                    tbxShowMessage.Text += "\nMessage not sent!";
+                    Console.WriteLine("Error: Message not sent!"); // Logging error message
                     return;
                 }
-             
+
                 tbxShowMessage.Text += "\nWe: " + tbxMessage.Text;
-                
+                Console.WriteLine("UI updated with message: We: " + tbxMessage.Text); // Logging UI update
+
                 tbxMessage.Clear();
                 tbxMessage.Focus();
             }
-
+            else
+            {
+                Console.WriteLine("No message to send."); // Logging no message to send
+            }
         }
         private void sendText(string str)
         {
-            //dang la server //server se lay stream cua client va truyen vo do
-            //dang la client// client se su dung stream cua minh de truyen cho server
             if (client.Connected)
             {
                 BinaryFormatter binFormatter = new BinaryFormatter();
@@ -180,6 +179,7 @@ namespace UltraView
         //WriteLog
         private void Writelogfile(string txt)
         {
+            Console.WriteLine($"Writing to log file: {txt}");
             using (FileStream fs = new FileStream(@"log.txt", FileMode.Append))
             {
                 using (StreamWriter writer = new StreamWriter(fs, Encoding.UTF8))
@@ -188,16 +188,12 @@ namespace UltraView
                 }
             }
         }
-
         private void ChatForm_Load(object sender, EventArgs e)
         {
             tbxMessage.Focus();
             tbxShowMessage.SelectionColor = Color.Blue;
-            
+
 
         }
     }
 }
-
-
-

@@ -33,7 +33,7 @@ namespace UltraView
         //Tab1_Open connect for other device
         #region Tab1_Open connect for other device
         public static int RemoteScreenFormCount = 0;
-        //Lấy ra IP của card mạng đang dùng
+        
         public string GetIP()
         {
             string output = GetLocalIPv4(NetworkInterfaceType.Wireless80211);
@@ -66,7 +66,7 @@ namespace UltraView
         ChatForm chatForm;
         private void btnOpenConnect_Click_1(object sender, EventArgs e)
         {
-            if (RemoteScreenFormCount != 0)//Nếu đã có 1 form mở lên rồi thì k connect nữa
+            if (RemoteScreenFormCount != 0)//Only 1 form allowed 
             {
                 lbStatus.Text = "Can not open more than 1 connection!";
                 return;
@@ -120,15 +120,15 @@ namespace UltraView
         }
         private Image CaptureScreen()
         {
-            height = (int)(GetDpiSafeResolution().Height*getScalingFactor());//Đã sửa
-            width = (int)(GetDpiSafeResolution().Width*getScalingFactor());//Đã sửa
+            height = (int)(GetDpiSafeResolution().Height*getScalingFactor());
+            width = (int)(GetDpiSafeResolution().Width*getScalingFactor());
             Rectangle bounds = new Rectangle(0, 0, width, height);
             Bitmap screenShot = new Bitmap(bounds.Width, bounds.Height, PixelFormat.Format32bppArgb);
             Graphics graphics = Graphics.FromImage(screenShot);
             graphics.CopyFromScreen(bounds.X, bounds.Y, 0, 0, bounds.Size, CopyPixelOperation.SourceCopy);
             return screenShot;
         }
-        //xem xet co xoa k
+
         private Image CaptureScreen(int width, int height)
         {
             Rectangle bounds = new Rectangle(0, 0, width, height);
@@ -171,7 +171,7 @@ namespace UltraView
             ostream = client.GetStream();
             if (txtWidth2.Text != "" && txtHeight2.Text != "")
             {
-                //Không cần phải check thêm nhiều điều kiện vì ngay chỗ click btn share screen đã check rồi
+                //Already checked on btn share screen
                 binFormatter.Serialize(ostream, CaptureScreen(int.Parse(txtWidth2.Text), int.Parse(txtHeight2.Text)));
             }
             else
@@ -180,7 +180,7 @@ namespace UltraView
 
         private bool isConnected = false;
         ChatForm chatForm2;
-        private void btnConnect2_Click(object sender, EventArgs e)//nhớ Xét các textbox
+        private void btnConnect2_Click(object sender, EventArgs e)//Check textbox 
         {
             client = new TcpClient();
             Writelogfile("Try Connect " + "IP: " + txtMyIP.Text + ", Port: " + txtMyPort.Text +" "+ DateTime.Now.ToShortTimeString());
@@ -197,7 +197,7 @@ namespace UltraView
             {
                 portNumber = int.Parse(txtPort2.Text);
                 client.Connect(txtIP2.Text, portNumber);
-                //
+        
                 chatForm2 = new ChatForm(1, txtIP2.Text, portNumber+1);
                 chatForm2.Show();
                 Writelogfile("Connected " + "IP: " + txtMyIP.Text + ", Port: " + txtMyPort.Text + " " + DateTime.Now.ToShortTimeString());
@@ -284,7 +284,7 @@ namespace UltraView
                     lbStatus.Text = "Đang truyền màn hình...";
                 }
                 
-                StartListenText();//Listen texxt
+                StartListenText();
                 Writelogfile("ShareScreen: " + "IP: " + txtMyIP.Text + ", Port: " + txtMyPort.Text + " " + DateTime.Now.ToShortTimeString());
                 
             }
@@ -303,10 +303,8 @@ namespace UltraView
                 
                 Writelogfile("StopShareScreen: " + "IP: " + txtMyIP.Text + ", Port: " + txtMyPort.Text + " " + DateTime.Now.ToShortTimeString());
                 
-                //StopListenText();//Stop listen
             }
         }
-        //đếm giờ, cài tick của nó khoảng 40 là vừa 
         private int timeOut = 0;
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -358,7 +356,7 @@ namespace UltraView
 
         #endregion
 
-        #region Tuan_Menu_and_Ghilog
+        #region Menu_and_Ghilog
 
 
 
@@ -746,7 +744,7 @@ namespace UltraView
         }
         #endregion
 
-        //Chua lam
+        
         #region End
         private bool checkFormOpen(string name)
         {
